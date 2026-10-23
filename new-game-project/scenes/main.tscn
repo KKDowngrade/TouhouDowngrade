@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
+
+[ext_resource type="Script" uid="uid://bqlp5lgb4d5h7" path="res://scripts/character_body_2d.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://d1k133yxl1vf1" path="res://scripts/main.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="1_sugp2"]
+[ext_resource type="Texture2D" uid="uid://cakflfh2a5ih1" path="res://assets/PlayerNormal.png" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dtclgpudk4ih3" path="res://scenes/bullet.tscn" id="3_o6xl0"]
+[ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
+radius = 5.0990195
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
+size = Vector2(593.5, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arqo0"]
+size = Vector2(56, 728)
+
+[sub_resource type="Theme" id="Theme_tipki"]
+default_font = ExtResource("5_tefeu")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
+bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
+bg_color = Color(0.6, 0, 0, 1)
+
+[node name="Main" type="Node2D" unique_id=874467654]
+script = ExtResource("1_jyhfs")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
+position = Vector2(335, 630)
+script = ExtResource("1_0wfyh")
+bullet_scene = ExtResource("3_o6xl0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1960556541]
+scale = Vector2(0.88, 0.88)
+texture = ExtResource("2_sugp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=202998651]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_rxva8")
+
+[node name="Cannon" type="Marker2D" parent="Player" unique_id=1882558076]
+position = Vector2(11, -36)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
+position = Vector2(-4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=8156311]
+position = Vector2(333.5, 6.5)
+shape = SubResource("RectangleShape2D_rxva8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=549590036]
+position = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1986371818]
+position = Vector2(327.75, 712)
+shape = SubResource("RectangleShape2D_rxva8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1539945488]
+position = Vector2(-3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1973622544]
+position = Vector2(18, 354)
+shape = SubResource("RectangleShape2D_arqo0")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1931394543]
+position = Vector2(636, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1570977951]
+position = Vector2(18, 354)
+shape = SubResource("RectangleShape2D_arqo0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140445075]
+position = Vector2(479, 359)
+texture = ExtResource("1_sugp2")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1579693613]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -202.0
+offset_top = 90.0
+offset_right = -145.0
+offset_bottom = 171.0
+grow_horizontal = 0
+theme = SubResource("Theme_tipki")
+
+[node name="PointsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1257773234]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="LifeLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1778533932]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug
+"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="SpellsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=967305562]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer" unique_id=1541633588]
+layout_mode = 2
+
+[node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=1282069486]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=red]Power"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="PowerBarr" type="ProgressBar" parent="HUD/VBoxContainer/HBoxContainer" unique_id=834674731]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_tefeu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o6xl0")
+value = 80.0
+show_percentage = false
+script = ExtResource("5_tbgi4")
