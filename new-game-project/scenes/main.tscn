@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="1_sugp2"]
 [ext_resource type="Texture2D" uid="uid://cakflfh2a5ih1" path="res://assets/PlayerNormal.png" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dtclgpudk4ih3" path="res://scenes/bullet.tscn" id="3_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://dxfadl4q6dh3h" path="res://assets/PlayerFocus.png" id="4_tipki"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
 
@@ -32,6 +33,8 @@ script = ExtResource("1_jyhfs")
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
 position = Vector2(335, 630)
 script = ExtResource("1_0wfyh")
+normal_texture = ExtResource("2_sugp2")
+focus_texture = ExtResource("4_tipki")
 bullet_scene = ExtResource("3_o6xl0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1960556541]

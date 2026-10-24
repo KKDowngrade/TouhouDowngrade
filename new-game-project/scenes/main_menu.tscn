@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://2yvq6yiiep7y"]
+
+[ext_resource type="Script" uid="uid://df8gpggjw138q" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_l6cm7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arqo0"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxva8"]
+bg_color = Color(0.24313726, 0.24313726, 0.24313726, 0.627451)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l6cm7"]
+bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="Theme" id="Theme_rxva8"]
+default_font = ExtResource("1_l6cm7")
+Button/styles/hover = SubResource("StyleBoxFlat_arqo0")
+Button/styles/normal = SubResource("StyleBoxFlat_rxva8")
+Button/styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+VBoxContainer/constants/separation = 20
+
+[node name="MainMenu" type="Control" unique_id=1180592146]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1467705070]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="NameLabel" type="RichTextLabel" parent="." unique_id=2065505597]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -207.0
+offset_right = 104.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("1_l6cm7")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bqqt6")
+bbcode_enabled = true
+text = "[wave][rainbow]G.O.S.T.O.S.A[/rainbow]
+Downgrade"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1716847740]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rxva8")
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1056275400]
+layout_mode = 2
+text = "Play"
+
+[node name="ScreenButton" type="Button" parent="VBoxContainer" unique_id=793518936]
+layout_mode = 2
+text = "BUG"
+
+[node name="ControlsButton" type="Button" parent="VBoxContainer" unique_id=278303423]
+layout_mode = 2
+text = "Controls"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1897180921]
+layout_mode = 2
+text = "Quit"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1277403831]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.5
+offset_top = -40.0
+offset_right = 105.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_l6cm7")
+bbcode_enabled = true
+text = "Created by Kim Downgrade"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScreenButton" to="." method="_on_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

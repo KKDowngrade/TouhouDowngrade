@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://j0ynbo8lik8n"]
+
+[ext_resource type="Script" uid="uid://u50vgr7ga5cn" path="res://scripts/controls.gd" id="1_5tddo"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="2_cywyo"]
+
+[node name="Controls" type="Control" unique_id=200889866]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5tddo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1277473210]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 719.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=995749843]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -44.5
+offset_right = 224.0
+offset_bottom = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=443720715]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_cywyo")
+theme_override_fonts/bold_font = ExtResource("2_cywyo")
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
+text = "[b]Controls:[/b]
+
+- WASD or Arrow Keys to move
+- Z to shoot
+- X to use a bomb"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=300227872]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_cywyo")
+text = "Back to menu"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
