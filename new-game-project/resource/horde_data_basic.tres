@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HordeData" format=3 uid="uid://3dvfrmdpc0ia"]
+
+[ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="1_u5gbd"]
+[ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="2_5hio0"]
+[ext_resource type="Resource" uid="uid://bx1yqm442tciq" path="res://resource/enemy_data_basic.tres" id="2_xx2bj"]
+
+[resource]
+script = ExtResource("2_5hio0")
+enemies = Array[ExtResource("1_u5gbd")]([ExtResource("2_xx2bj")])
+spanw_points = Array[int]([0, 3, 7])
+spawn_per_wave = 3
+wave_delay = 0.5
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"

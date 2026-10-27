@@ -8,6 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://dxfadl4q6dh3h" path="res://assets/PlayerFocus.png" id="4_tipki"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
+[ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
+[ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="12_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://scenes/enemy.tscn" id="13_trceg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 5.0990195
@@ -26,6 +31,21 @@ bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_5hio0"]
+script = ExtResource("12_jkv2x")
+enemy_scene = ExtResource("13_trceg")
+metadata/_custom_type_script = "uid://d17nc5pj78gqw"
+
+[sub_resource type="Resource" id="Resource_vuit1"]
+script = ExtResource("10_trceg")
+time = 12.0
+amount = 20
+enemies = Array[ExtResource("12_jkv2x")]([SubResource("Resource_5hio0")])
+spanw_points = Array[int]([0, 1, 2, 3])
+spawn_per_wave = 4
+wave_delay = 1.0
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
 [node name="Main" type="Node2D" unique_id=874467654]
 script = ExtResource("1_jyhfs")
@@ -136,3 +156,34 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_o6xl0")
 value = 80.0
 show_percentage = false
 script = ExtResource("5_tbgi4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1686451816]
+position = Vector2(480, 360)
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1521036796]
+script = ExtResource("9_85g3d")
+hordes = Array[ExtResource("10_trceg")]([ExtResource("11_a8y0u"), SubResource("Resource_vuit1")])
+
+[node name="SpawnPoint1" type="Marker2D" parent="EnemySpawner" unique_id=1438988399]
+position = Vector2(75, 6)
+
+[node name="SpawnPoint2" type="Marker2D" parent="EnemySpawner" unique_id=242755141]
+position = Vector2(129, 6)
+
+[node name="SpawnPoint3" type="Marker2D" parent="EnemySpawner" unique_id=1335232039]
+position = Vector2(170, 6)
+
+[node name="SpawnPoint4" type="Marker2D" parent="EnemySpawner" unique_id=1531802384]
+position = Vector2(210, 6)
+
+[node name="SpawnPoint5" type="Marker2D" parent="EnemySpawner" unique_id=1461981359]
+position = Vector2(469, 6)
+
+[node name="SpawnPoint6" type="Marker2D" parent="EnemySpawner" unique_id=1168237828]
+position = Vector2(508, 6)
+
+[node name="SpawnPoint7" type="Marker2D" parent="EnemySpawner" unique_id=1253099739]
+position = Vector2(538, 6)
+
+[node name="SpawnPoint8" type="Marker2D" parent="EnemySpawner" unique_id=356013141]
+position = Vector2(574, 6)

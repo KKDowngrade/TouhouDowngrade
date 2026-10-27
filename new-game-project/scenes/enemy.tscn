@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cohiqpndtgam"]
+
+[ext_resource type="Script" uid="uid://dtwhgdqkgp8nq" path="res://scripts/enemy.gd" id="1_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="2_md0e3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
+
+[node name="Enemy" type="Area2D" unique_id=1804653952]
+script = ExtResource("1_4ra3w")
+spaw_points = Array[int]([0, 3, 7])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=231543162]
+scale = Vector2(0.15625, 0.15625)
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1875808103]
+shape = SubResource("CircleShape2D_0yc80")
+
+[node name="Entity" type="Node" parent="." unique_id=1002883981 node_paths=PackedStringArray("entity_owner")]
+script = ExtResource("2_md0e3")
+entity_owner = NodePath("..")
+metadata/_custom_type_script = "uid://4we8vic82cr2"
