@@ -105,13 +105,14 @@ theme = SubResource("Theme_rxva8")
 layout_mode = 2
 text = "Play"
 
-[node name="ScreenButton" type="Button" parent="VBoxContainer" unique_id=793518936]
-layout_mode = 2
-text = "BUG"
-
 [node name="ControlsButton" type="Button" parent="VBoxContainer" unique_id=278303423]
 layout_mode = 2
 text = "Controls"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=824186863]
+layout_mode = 2
+text = "Settings
+"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1897180921]
 layout_mode = 2
@@ -136,6 +137,6 @@ fit_content = true
 autowrap_mode = 0
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ScreenButton" to="." method="_on_screen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

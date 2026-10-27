@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://c8l80emx6xhqg"]
+
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_r6d6q"]
+[ext_resource type="Script" uid="uid://biuuhi2ofmq8y" path="res://settings.gd" id="2_6wm04"]
+
+[sub_resource type="Theme" id="Theme_rxva8"]
+default_font = ExtResource("1_r6d6q")
+
+[node name="Settings" type="Control" unique_id=1180666073]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rxva8")
+script = ExtResource("2_6wm04")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2090208907]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1985382357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.0
+offset_top = -50.0
+offset_right = 118.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TittleLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1382368224]
+layout_mode = 2
+bbcode_enabled = true
+text = "Settings
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LifeContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=332287742]
+layout_mode = 2
+
+[node name="LifeLabel" type="RichTextLabel" parent="VBoxContainer/LifeContainer" unique_id=820376571]
+layout_mode = 2
+bbcode_enabled = true
+text = "Lifes"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LifeBox" type="SpinBox" parent="VBoxContainer/LifeContainer" unique_id=1916300445]
+layout_mode = 2
+min_value = 1.0
+max_value = 7.0
+value = 3.0
+
+[node name="BombsContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=642489786]
+layout_mode = 2
+
+[node name="BombsLabel" type="RichTextLabel" parent="VBoxContainer/BombsContainer" unique_id=2099326037]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bombs"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BombsBox" type="SpinBox" parent="VBoxContainer/BombsContainer" unique_id=518535502]
+layout_mode = 2
+min_value = 1.0
+max_value = 7.0
+value = 3.0
+
+[node name="ScreenContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1363484630]
+layout_mode = 2
+
+[node name="ScreenLabel" type="RichTextLabel" parent="VBoxContainer/ScreenContainer" unique_id=836552062]
+layout_mode = 2
+bbcode_enabled = true
+text = "Screen Mode
+"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScreenButton" type="Button" parent="VBoxContainer/ScreenContainer" unique_id=1134189501]
+layout_mode = 2
+text = "BUG"
+
+[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=907495767]
+layout_mode = 2
+text = "Back to menu"
+
+[connection signal="value_changed" from="VBoxContainer/LifeContainer/LifeBox" to="." method="_on_life_box_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/BombsContainer/BombsBox" to="." method="_on_bombs_box_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ScreenContainer/ScreenButton" to="." method="_on_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
