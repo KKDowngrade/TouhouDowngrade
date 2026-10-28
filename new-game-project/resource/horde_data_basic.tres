@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_5hio0")
 enemies = Array[ExtResource("1_u5gbd")]([ExtResource("2_xx2bj")])
-spanw_points = Array[int]([0, 3, 7])
-spawn_per_wave = 3
+spanw_points = Array[int]([0, 1, 2, 3])
+spawn_per_wave = 4
 wave_delay = 0.5
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"

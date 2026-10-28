@@ -5,13 +5,14 @@
 [ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="2_md0e3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
+radius = 16.03122
 
 [node name="Enemy" type="Area2D" unique_id=1804653952]
 script = ExtResource("1_4ra3w")
 spaw_points = Array[int]([0, 3, 7])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=231543162]
-scale = Vector2(0.15625, 0.15625)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_7p1mj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1875808103]
