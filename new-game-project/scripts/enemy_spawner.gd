@@ -24,7 +24,7 @@ func get_next_horde() -> void:
 		set_physics_process(false)
 		return
 	next_horde = hordes[0]
-	next_horde_time = next_horde.time
+	next_horde_time += next_horde.time
 	
 	
 func spawn_horde() -> void:

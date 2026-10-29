@@ -3,11 +3,14 @@
 [ext_resource type="Script" uid="uid://dtwhgdqkgp8nq" path="res://scripts/enemy.gd" id="1_4ra3w"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="2_md0e3"]
+[ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="4_5uy6h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
 radius = 16.03122
 
 [node name="Enemy" type="Area2D" unique_id=1804653952]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_4ra3w")
 spaw_points = Array[int]([0, 3, 7])
 
@@ -21,4 +24,11 @@ shape = SubResource("CircleShape2D_0yc80")
 [node name="Entity" type="Node" parent="." unique_id=1002883981 node_paths=PackedStringArray("entity_owner")]
 script = ExtResource("2_md0e3")
 entity_owner = NodePath("..")
+drop = ExtResource("4_5uy6h")
+drop_types = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://4we8vic82cr2"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2079056945]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -17,6 +17,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 5.0990195
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
+radius = 42.190044
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
 size = Vector2(593.5, 33)
 
@@ -39,8 +42,7 @@ metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 
 [sub_resource type="Resource" id="Resource_vuit1"]
 script = ExtResource("10_trceg")
-time = 12.0
-amount = 20
+time = 8.0
 enemies = Array[ExtResource("12_jkv2x")]([SubResource("Resource_5hio0")])
 spanw_points = Array[int]([4, 5, 6, 7])
 spawn_per_wave = 4
@@ -52,6 +54,7 @@ script = ExtResource("1_jyhfs")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
 position = Vector2(335, 630)
+collision_layer = 2
 script = ExtResource("1_0wfyh")
 normal_texture = ExtResource("2_sugp2")
 focus_texture = ExtResource("4_tipki")
@@ -67,6 +70,13 @@ shape = SubResource("CircleShape2D_rxva8")
 
 [node name="Cannon" type="Marker2D" parent="Player" unique_id=1882558076]
 position = Vector2(11, -36)
+
+[node name="DropCollectorArea" type="Area2D" parent="Player" unique_id=1268539901]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DropCollectorArea" unique_id=69299990]
+shape = SubResource("CircleShape2D_0yc80")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
 position = Vector2(-4, -1)
@@ -96,11 +106,11 @@ position = Vector2(636, -1)
 position = Vector2(18, 354)
 shape = SubResource("RectangleShape2D_arqo0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140445075]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283]
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=2140445075]
 position = Vector2(479, 359)
 texture = ExtResource("1_sugp2")
-
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1579693613]
 anchors_preset = 1
@@ -154,7 +164,6 @@ layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_tefeu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o6xl0")
 value = 80.0
-show_percentage = false
 script = ExtResource("5_tbgi4")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1686451816]
@@ -187,3 +196,5 @@ position = Vector2(538, 6)
 
 [node name="SpawnPoint8" type="Marker2D" parent="EnemySpawner" unique_id=356013141]
 position = Vector2(574, 6)
+
+[connection signal="power_uped" from="Player" to="." method="_on_player_power_uped"]

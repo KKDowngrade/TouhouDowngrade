@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://b4h063ihdcdre"]
+
+[ext_resource type="Script" uid="uid://dpydlglr34khc" path="res://scripts/drop.gd" id="1_8gqc7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
+radius = 31.016125
+
+[node name="Drop" type="Area2D" unique_id=691110106]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_8gqc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=143017216]
+shape = SubResource("CircleShape2D_0yc80")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1605451977]
+color = Color(0, 0.12941177, 1, 1)
+polygon = PackedVector2Array(-10, 0, 0, -10, 10, 0, 0, 10)

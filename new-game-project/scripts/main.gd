@@ -19,3 +19,8 @@ func _ready() -> void:
 	points_label.text=str("[color=blue]Points:[/color] ", score)
 	life_label.text=str("[color=magenta]Lifes:[/color] ", life)
 	spells_label.text=str("[color=green]Bombs:[/color] ", bombs)
+	EventBus.power_uped.connect(_power_upated)
+	
+
+func _power_upated(amount: int) -> void:
+	power_barr.value = amount
