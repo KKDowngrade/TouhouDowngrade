@@ -76,6 +76,7 @@ Spell={
 2d_physics/layer_4="drop"
 2d_physics/layer_5="bullet_player"
 2d_physics/layer_6="bullet_enemy"
+2d_physics/layer_7="graze"
 
 [physics]
 

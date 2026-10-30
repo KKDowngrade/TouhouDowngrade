@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://dd7d0byjxos08"]
+
+[ext_resource type="Script" uid="uid://bkbbuqb7iwgdn" path="res://scripts/enemy_shooter.gd" id="1_p4l84"]
+[ext_resource type="Texture2D" uid="uid://bmkru31rvoov6" path="res://resource/EnemyShooter.png" id="2_mneqe"]
+[ext_resource type="PackedScene" uid="uid://h1xvd6easkrt" path="res://scenes/enemy_bullet.tscn" id="2_t4tug"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="3_t4tug"]
+[ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="5_t4tug"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
+radius = 18.0
+
+[sub_resource type="Animation" id="Animation_5rxrl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fkp5b"]
+resource_name = "shooter_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20172349),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c0enx"]
+_data = {
+&"RESET": SubResource("Animation_5rxrl"),
+&"shooter_animation": SubResource("Animation_fkp5b")
+}
+
+[node name="EnemyShooter" type="Area2D" unique_id=1396498859]
+collision_layer = 4
+collision_mask = 66
+script = ExtResource("1_p4l84")
+bullet_scene = ExtResource("2_t4tug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1889737534]
+shape = SubResource("CircleShape2D_rxva8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=753663801]
+texture = ExtResource("2_mneqe")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=987922223]
+libraries/ = SubResource("AnimationLibrary_c0enx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1117814346]
+
+[node name="Cannon1" type="Marker2D" parent="." unique_id=333545934]
+position = Vector2(-10, 13)
+
+[node name="Cannon2" type="Marker2D" parent="." unique_id=1314861091]
+position = Vector2(9, 13)
+
+[node name="Entity" type="Node" parent="." unique_id=454550543 node_paths=PackedStringArray("entity_owner")]
+script = ExtResource("3_t4tug")
+entity_owner = NodePath("..")
+speed = 100.0
+drop = ExtResource("5_t4tug")
+drop_types = Array[int]([0, 1])
+enemy_type = 1
+metadata/_custom_type_script = "uid://4we8vic82cr2"
+
+[node name="Timer" type="Timer" parent="." unique_id=35137685]
+autostart = true
+
+[connection signal="body_entered" from="." to="Entity" method="_on_enemy_shooter_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

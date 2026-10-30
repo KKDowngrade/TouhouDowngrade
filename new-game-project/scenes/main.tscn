@@ -12,13 +12,16 @@
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="12_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://scenes/enemy.tscn" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 5.0990195
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
 radius = 42.190044
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arqo0"]
+radius = 35.22783
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
 size = Vector2(593.5, 33)
@@ -33,9 +36,9 @@ default_font = ExtResource("5_tefeu")
 bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
-bg_color = Color(0.6, 0, 0, 1)
+bg_color = Color(0, 0, 1, 1)
 
-[sub_resource type="Resource" id="Resource_5hio0"]
+[sub_resource type="Resource" id="Resource_rxva8"]
 script = ExtResource("12_jkv2x")
 enemy_scene = ExtResource("13_trceg")
 metadata/_custom_type_script = "uid://d17nc5pj78gqw"
@@ -43,9 +46,9 @@ metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 [sub_resource type="Resource" id="Resource_vuit1"]
 script = ExtResource("10_trceg")
 time = 8.0
-enemies = Array[ExtResource("12_jkv2x")]([SubResource("Resource_5hio0")])
-spanw_points = Array[int]([4, 5, 6, 7])
-spawn_per_wave = 4
+enemies = Array[ExtResource("12_jkv2x")]([SubResource("Resource_rxva8")])
+spanw_points = Array[int]([4, 7])
+spawn_per_wave = 2
 wave_delay = 1.0
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
@@ -53,7 +56,7 @@ metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 script = ExtResource("1_jyhfs")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
-position = Vector2(335, 630)
+position = Vector2(332, 630)
 collision_layer = 2
 script = ExtResource("1_0wfyh")
 normal_texture = ExtResource("2_sugp2")
@@ -77,6 +80,13 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DropCollectorArea" unique_id=69299990]
 shape = SubResource("CircleShape2D_0yc80")
+
+[node name="ScratchArea" type="Area2D" parent="Player" unique_id=383968501]
+collision_layer = 64
+collision_mask = 36
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/ScratchArea" unique_id=925620646]
+shape = SubResource("CircleShape2D_arqo0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
 position = Vector2(-4, -1)
@@ -116,10 +126,10 @@ texture = ExtResource("1_sugp2")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -202.0
+offset_left = -309.0
 offset_top = 90.0
-offset_right = -145.0
-offset_bottom = 171.0
+offset_right = -21.0
+offset_bottom = 195.0
 grow_horizontal = 0
 theme = SubResource("Theme_tipki")
 
@@ -147,13 +157,20 @@ text = "Bug"
 fit_content = true
 autowrap_mode = 0
 
+[node name="ScratchLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=741671224]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer" unique_id=1541633588]
 layout_mode = 2
 
 [node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=1282069486]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=red]Power"
+text = "[color=blue]Power"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -186,15 +203,27 @@ position = Vector2(170, 6)
 position = Vector2(210, 6)
 
 [node name="SpawnPoint5" type="Marker2D" parent="EnemySpawner" unique_id=1461981359]
-position = Vector2(469, 6)
+position = Vector2(253, 6)
 
 [node name="SpawnPoint6" type="Marker2D" parent="EnemySpawner" unique_id=1168237828]
-position = Vector2(508, 6)
+position = Vector2(286, 6)
 
 [node name="SpawnPoint7" type="Marker2D" parent="EnemySpawner" unique_id=1253099739]
-position = Vector2(538, 6)
+position = Vector2(360, 6)
 
 [node name="SpawnPoint8" type="Marker2D" parent="EnemySpawner" unique_id=356013141]
+position = Vector2(399, 6)
+
+[node name="SpawnPoint9" type="Marker2D" parent="EnemySpawner" unique_id=1342278981]
+position = Vector2(437, 6)
+
+[node name="SpawnPoint10" type="Marker2D" parent="EnemySpawner" unique_id=1878909099]
+position = Vector2(480, 6)
+
+[node name="SpawnPoint11" type="Marker2D" parent="EnemySpawner" unique_id=919775338]
+position = Vector2(523, 6)
+
+[node name="SpawnPoint12" type="Marker2D" parent="EnemySpawner" unique_id=315106965]
 position = Vector2(574, 6)
 
-[connection signal="power_uped" from="Player" to="." method="_on_player_power_uped"]
+[connection signal="body_entered" from="Player/ScratchArea" to="Player" method="_on_scratch_area_body_entered"]

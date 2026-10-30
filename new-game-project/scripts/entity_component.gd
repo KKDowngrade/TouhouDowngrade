@@ -9,6 +9,8 @@ signal died
 @export var bullet_damage: int = 1
 @export var drop: PackedScene
 @export var drop_types: Array[Drop.DropType]
+@export var enemy_type: int = 0
+
 
 var tween: Tween = create_tween()
 
@@ -17,11 +19,15 @@ var tween: Tween = create_tween()
 
 
 func take_damage(amount: int) -> void:
+	print(enemy_type)
 	health -= amount
 	if health <= 0:
 		feedback_damage()
 		died.emit()
 		
+
+
+
 
 func feedback_damage() -> void:
 	if not tween.is_valid():
@@ -36,7 +42,15 @@ func feedback_damage() -> void:
 		_drop.global_position = entity_owner.global_position
 		entity_owner.add_sibling(_drop)
 		_drop.position.x += drop_offset + drop_index
-		drop_index += 1
+		drop_index += 20
 	
 	
 	entity_owner.queue_free() # TODO: EXPLODE
+
+
+func _on_enemy_body_entered(body: Node2D) -> void:
+	body._taken_damage()
+
+
+func _on_enemy_shooter_body_entered(body: Node2D) -> void:
+	body._taken_damage()

@@ -5,7 +5,7 @@ extends ProgressBar
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	min_value = 0
-	max_value = 100
+	max_value = 1000
 	value = 0
 
 
