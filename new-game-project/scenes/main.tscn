@@ -8,11 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://dxfadl4q6dh3h" path="res://assets/PlayerFocus.png" id="4_tipki"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://cp78o3yguwkcq" path="res://scripts/boss_spawner.gd" id="6_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://cd2gys781u43v" path="res://scenes/enemy_boss1.tscn" id="7_muem4"]
+[ext_resource type="Script" uid="uid://clvi86eqro3gl" path="res://scripts/hud.gd" id="8_dp3eg"]
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="12_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
+[ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 5.0990195
@@ -52,8 +57,17 @@ spawn_per_wave = 2
 wave_delay = 1.0
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
-[node name="Main" type="Node2D" unique_id=874467654]
+[sub_resource type="Environment" id="Environment_0yc80"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 2.0
+
+[node name="Main" type="Node2D" unique_id=874467654 node_paths=PackedStringArray("boss_health_bar", "boss_name_label", "boss_health_panel")]
 script = ExtResource("1_jyhfs")
+boss_health_bar = NodePath("HUD/ReferenceRect/BossHealthPanel/BossHealthBar")
+boss_name_label = NodePath("HUD/ReferenceRect/BossHealthPanel/BossNameLabel")
+boss_health_panel = NodePath("HUD/ReferenceRect/BossHealthPanel")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
 position = Vector2(332, 630)
@@ -116,7 +130,16 @@ position = Vector2(636, -1)
 position = Vector2(18, 354)
 shape = SubResource("RectangleShape2D_arqo0")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283]
+[node name="BossSpawner" type="Marker2D" parent="." unique_id=1363968288]
+position = Vector2(329, 121)
+script = ExtResource("6_jbj1t")
+boss_scene = ExtResource("7_muem4")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283 node_paths=PackedStringArray("pause_panel", "continue_panel")]
+process_mode = 3
+script = ExtResource("8_dp3eg")
+pause_panel = NodePath("ReferenceRect/PausePanel")
+continue_panel = NodePath("ReferenceRect/ContinuePanel")
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=2140445075]
 position = Vector2(479, 359)
@@ -183,6 +206,97 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_o6xl0")
 value = 80.0
 script = ExtResource("5_tbgi4")
 
+[node name="ReferenceRect" type="ReferenceRect" parent="HUD" unique_id=1807712623]
+offset_left = 43.0
+offset_top = 22.0
+offset_right = 626.0
+offset_bottom = 695.0
+
+[node name="BossHealthPanel" type="HBoxContainer" parent="HUD/ReferenceRect" unique_id=2043055720]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1583350694]
+layout_mode = 2
+bbcode_enabled = true
+text = "Boss Bug"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1419363607]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+show_percentage = false
+
+[node name="ContinuePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=897449247]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -29.0
+offset_right = 39.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=2142439320]
+layout_mode = 2
+bbcode_enabled = true
+text = "Continue?"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1189919866]
+layout_mode = 2
+alignment = 1
+
+[node name="ContinueYes" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1396542763]
+layout_mode = 2
+text = "Yes"
+
+[node name="ContinueNo" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=2126801930]
+layout_mode = 2
+text = "No"
+
+[node name="PausePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=760079129]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=570909164]
+layout_mode = 2
+bbcode_enabled = true
+text = "Paused"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PauseButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=675741856]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1643701137]
+layout_mode = 2
+text = "Main Menu"
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1686451816]
 position = Vector2(480, 360)
 
@@ -226,4 +340,20 @@ position = Vector2(523, 6)
 [node name="SpawnPoint12" type="Marker2D" parent="EnemySpawner" unique_id=315106965]
 position = Vector2(574, 6)
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=937890028]
+modulate = Color(11.88096, 11.88096, 11.88096, 1)
+texture = ExtResource("14_a8y0u")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1126878631]
+environment = SubResource("Environment_0yc80")
+
+[node name="BombEffect" parent="." unique_id=1976739912 instance=ExtResource("15_jkv2x")]
+position = Vector2(-2, -1)
+
 [connection signal="body_entered" from="Player/ScratchArea" to="Player" method="_on_scratch_area_body_entered"]
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="HUD" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/QuitButton" to="HUD" method="_on_quit_button_pressed"]
+[connection signal="all_hordes_finished" from="EnemySpawner" to="BossSpawner" method="_on_all_hordes_finished"]

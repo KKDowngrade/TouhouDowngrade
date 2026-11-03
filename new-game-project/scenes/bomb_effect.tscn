@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b7amaj6qmm1h2"]
+
+[ext_resource type="Script" uid="uid://cw5ast8objepa" path="res://scripts/bomb_effect.gd" id="1_8u35g"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_hbck4"]
+
+[sub_resource type="Curve" id="Curve_8u35g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wkpy8"]
+curve = SubResource("Curve_8u35g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0yc80"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(960, 720, 1)
+angle_min = -310.19998
+angle_max = 243.70001
+angular_velocity_min = -376.62
+angular_velocity_max = 332.30997
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_wkpy8")
+
+[node name="BombEffect" type="Node2D" unique_id=1976739912]
+script = ExtResource("1_8u35g")
+
+[node name="BombParticles" type="GPUParticles2D" parent="." unique_id=1795067882]
+emitting = false
+amount = 100
+texture = ExtResource("1_hbck4")
+one_shot = true
+explosiveness = 0.85
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_0yc80")

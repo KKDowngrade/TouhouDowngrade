@@ -59,7 +59,7 @@ hframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1875808103]
 shape = SubResource("CircleShape2D_0yc80")
 
-[node name="Entity" type="Node" parent="." unique_id=1002883981 node_paths=PackedStringArray("entity_owner")]
+[node name="Entity" type="Node" parent="." unique_id=1002883981 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
 script = ExtResource("2_md0e3")
 entity_owner = NodePath("..")
 drop = ExtResource("4_5uy6h")

@@ -20,14 +20,21 @@ var score: int = 0
 var scratch: int = 0
 var lifes: int = 0
 var invencible: bool = false
+var bombs: int = 3
 @export var invencibility_time: float = 2.0
 @export var flash_interval: float = 0.1
 var flash_tween: Tween
 
 func _ready() -> void:
+	bombs = GameManger.bombs
 	lifes = GameManger.life
 	EventBus.drop_collected.connect(_on_drop_collected)
 	power_level_up()
+	EventBus.run_continued.connect(_on_run_continued)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Spell"):
+		use_special()
 
 
 func _physics_process(delta: float) -> void:
@@ -248,7 +255,10 @@ func _taken_damage() -> void:
 		return
 	invencible = true
 	lifes -= 1
+	EventBus.life_lost.emit(lifes)
 	global_position = Vector2(332, 630)
+	if lifes < 0:
+		EventBus.player_died.emit()
 	
 	_play_flash()
 	
@@ -267,4 +277,17 @@ func _play_flash() -> void:
 	flash_tween.tween_property(sprite_2d, "modulate", Color.WHITE, flash_interval)
 	flash_tween.finished.connect(func() -> void: sprite_2d.modulate = Color.WHITE)
 	
+	
+func use_special() -> void:
+	if bombs <= 0:
+		return
+		
+	get_tree().call_group("enemy", "take_damage", 10)
+	bombs -= 1
+	EventBus.bomb_used.emit(bombs)
+	
+	
+func _on_run_continued() -> void:
+	lifes = 3
+	EventBus.life_lost.emit(lifes)
 	

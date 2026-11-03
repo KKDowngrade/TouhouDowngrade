@@ -1,5 +1,6 @@
 extends Node2D
 
+signal all_hordes_finished
 
 @export var hordes: Array[HordeData]
 @export var hordes_finished: Array[HordeData]
@@ -21,6 +22,7 @@ func  _physics_process(delta: float) -> void:
 	
 func get_next_horde() -> void:
 	if hordes.size() <= 0:
+		get_tree().create_timer(5).timeout.connect(all_hordes_finished.emit)
 		set_physics_process(false)
 		return
 	next_horde = hordes[0]
