@@ -49,7 +49,7 @@ func _on_drop_collected(drop_type: Drop.DropType) -> void:
 			score += 10
 			EventBus.scored.emit(score)
 		Drop.DropType.POWER:
-			power_amount += 1
+			power_amount += 10
 			power_amount = mini(power_amount, power_amount_max)
 			EventBus.power_uped.emit(power_amount)
 			check_power_level()
