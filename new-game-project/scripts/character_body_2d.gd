@@ -250,7 +250,7 @@ func shot() ->  void:
 
 
 func _on_scratch_area_body_entered(body: Node2D) -> void:
-	print(body)
+	print("body")
 	scratch += 10
 	score += 50
 	EventBus.scored.emit(score)

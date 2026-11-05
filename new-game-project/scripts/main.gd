@@ -43,8 +43,10 @@ func _power_upated(amount: int) -> void:
 	
 	
 func _score_updated(points: int) -> void:
+	print("scored")
 	score = points
 	points_label.text=str("[color=orange_red]Points:[/color] ", score)
+	GameManger.game_data.score = score
 	
 func _scratch_updated(scratchs: int) -> void:
 	scratch += scratchs

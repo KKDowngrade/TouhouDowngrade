@@ -9,3 +9,5 @@ signal bomb_used(bombs: int)
 signal boss_health_changed(health: int, max_health: int)
 signal player_died
 signal run_continued
+signal game_finished
+signal score_submitted(item: RankingItem)

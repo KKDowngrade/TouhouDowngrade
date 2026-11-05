@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b86hmdgdevqet"]
+
+[ext_resource type="Script" uid="uid://cxbhe5dgopmm4" path="res://scripts/raking_item.gd" id="1_mqa15"]
+
+[node name="RakingItem" type="HBoxContainer" unique_id=1768061862]
+script = ExtResource("1_mqa15")
+
+[node name="PlayerName" type="LineEdit" parent="." unique_id=636583169]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "ASS"
+max_length = 3
+caret_blink = true
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=537476919]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0000000"
+horizontal_alignment = 2
+
+[connection signal="text_submitted" from="PlayerName" to="." method="_on_player_name_text_submitted"]
