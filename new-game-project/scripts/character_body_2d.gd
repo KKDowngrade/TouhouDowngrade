@@ -24,6 +24,10 @@ var bombs: int = 3
 @export var invencibility_time: float = 2.0
 @export var flash_interval: float = 0.1
 var flash_tween: Tween
+@onready var shot_sound: AudioStreamPlayer2D = $Shot_Sound
+@onready var hit_sound: AudioStreamPlayer2D = $HitSound
+@onready var pick_drop_sound: AudioStreamPlayer2D = $PickDropSound
+
 
 func _ready() -> void:
 	bombs = GameManger.bombs
@@ -53,10 +57,12 @@ func _physics_process(delta: float) -> void:
 func _on_drop_collected(drop_type: Drop.DropType) -> void:
 	match drop_type:
 		Drop.DropType.SCORE:
+			pick_drop_sound.play()
 			score += 10
 			EventBus.scored.emit(score)
 		Drop.DropType.POWER:
-			power_amount += 10
+			pick_drop_sound.play()
+			power_amount += 1
 			power_amount = mini(power_amount, power_amount_max)
 			EventBus.power_uped.emit(power_amount)
 			check_power_level()
@@ -236,6 +242,7 @@ func handle_shooting(delta: float) -> void:
 func shot() ->  void:
 
 	for origin in attack_points:
+		shot_sound.play()
 		var bullet := bullet_scene.instantiate() as Bullet
 		bullet.direction = Vector2(0, lerpf(80, 800, Input.get_action_strength("Focus"))).direction_to(origin)
 		bullet.global_position = cannon.global_position + origin
@@ -253,6 +260,7 @@ func _on_scratch_area_body_entered(body: Node2D) -> void:
 func _taken_damage() -> void:
 	if invencible:
 		return
+	hit_sound.play()
 	invencible = true
 	lifes -= 1
 	EventBus.life_lost.emit(lifes)

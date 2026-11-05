@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://djc0xmtmkerxx" path="res://resource/EnemyBullet.png" id="2_38r62"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
-radius = 5.0
+radius = 9.0
 
 [node name="enemy_bullet" type="Area2D" unique_id=1658957833 groups=["enemy"]]
 collision_layer = 32
@@ -16,6 +16,7 @@ speed = 200.0
 shape = SubResource("CircleShape2D_rxva8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=198908245]
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_38r62")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=6112669]

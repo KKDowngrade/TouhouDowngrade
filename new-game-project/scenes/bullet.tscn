@@ -16,7 +16,7 @@ shape = SubResource("CircleShape2D_rxva8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1024954767]
 modulate = Color(11.88096, 11.88096, 11.88096, 1)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("2_y25gk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1346923884]

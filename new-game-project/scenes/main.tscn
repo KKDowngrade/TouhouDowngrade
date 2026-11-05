@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dxfadl4q6dh3h" path="res://assets/PlayerFocus.png" id="4_tipki"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
+[ext_resource type="AudioStream" uid="uid://vnaoj2kahvw5" path="res://assets/shot_sound.sfxr" id="6_gqmmt"]
 [ext_resource type="Script" uid="uid://cp78o3yguwkcq" path="res://scripts/boss_spawner.gd" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cd2gys781u43v" path="res://scenes/enemy_boss1.tscn" id="7_muem4"]
+[ext_resource type="AudioStream" uid="uid://dr5wpq3gnhuwu" path="res://assets/hit_sound.sfxr" id="7_yc10j"]
 [ext_resource type="Script" uid="uid://clvi86eqro3gl" path="res://scripts/hud.gd" id="8_dp3eg"]
+[ext_resource type="AudioStream" uid="uid://ce34qc0nkiyjl" path="res://assets/drop_pick_sound.sfxr" id="8_jscy8"]
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
@@ -19,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://vlhqw7u6w11v" path="res://assets/Boss1.png" id="23_pm3ni"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 5.0990195
@@ -102,6 +106,15 @@ collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/ScratchArea" unique_id=925620646]
 shape = SubResource("CircleShape2D_arqo0")
+
+[node name="Shot_Sound" type="AudioStreamPlayer2D" parent="Player" unique_id=1319749081]
+stream = ExtResource("6_gqmmt")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1922430848]
+stream = ExtResource("7_yc10j")
+
+[node name="PickDropSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1194677473]
+stream = ExtResource("8_jscy8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
 position = Vector2(-4, -1)
@@ -356,7 +369,7 @@ position = Vector2(523, 6)
 position = Vector2(574, 6)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=937890028]
-modulate = Color(11.88096, 11.88096, 11.88096, 1)
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
 texture = ExtResource("14_a8y0u")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1126878631]
@@ -364,6 +377,11 @@ environment = SubResource("Environment_0yc80")
 
 [node name="BombEffect" parent="." unique_id=1976739912 instance=ExtResource("15_jkv2x")]
 position = Vector2(-2, -1)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1431018990]
+position = Vector2(77, -99)
+texture = ExtResource("23_pm3ni")
+hframes = 2
 
 [connection signal="body_entered" from="Player/ScratchArea" to="Player" method="_on_scratch_area_body_entered"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
