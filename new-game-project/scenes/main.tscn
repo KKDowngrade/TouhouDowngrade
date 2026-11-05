@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="12_0ld40"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="12_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
@@ -135,11 +136,12 @@ position = Vector2(329, 121)
 script = ExtResource("6_jbj1t")
 boss_scene = ExtResource("7_muem4")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283 node_paths=PackedStringArray("pause_panel", "continue_panel")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label")]
 process_mode = 3
 script = ExtResource("8_dp3eg")
 pause_panel = NodePath("ReferenceRect/PausePanel")
 continue_panel = NodePath("ReferenceRect/ContinuePanel")
+remainign_cont_label = NodePath("ReferenceRect/ContinuePanel/RemainingContLabel")
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=2140445075]
 position = Vector2(479, 359)
@@ -218,6 +220,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 4.0
 grow_horizontal = 2
+theme = ExtResource("12_0ld40")
 alignment = 1
 
 [node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1583350694]
@@ -247,6 +250,7 @@ offset_right = 39.0
 offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("12_0ld40")
 
 [node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=2142439320]
 layout_mode = 2
@@ -267,7 +271,17 @@ text = "Yes"
 layout_mode = 2
 text = "No"
 
+[node name="RemainingContLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=423761955]
+layout_mode = 2
+bbcode_enabled = true
+text = "BUG BUG"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PausePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=760079129]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -280,6 +294,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("12_0ld40")
 
 [node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=570909164]
 layout_mode = 2

@@ -288,6 +288,17 @@ func use_special() -> void:
 	
 	
 func _on_run_continued() -> void:
+	invencible = true
 	lifes = 3
 	EventBus.life_lost.emit(lifes)
+	score = 0
+	EventBus.scored.emit(score)
+	bombs = 3
+	EventBus.bomb_used.emit(bombs)
+	scratch = 0
+	EventBus.scratched.emit(scratch)
+	_play_flash()
+	
+	await  get_tree().create_timer(invencibility_time).timeout
+	invencible = false
 	

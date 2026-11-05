@@ -2,6 +2,9 @@ extends CanvasLayer
 
 @export var pause_panel: Control
 @export var continue_panel: Control
+@export var remainign_cont_label: Control
+
+var continues: int = 5
 
 # Called when the node enters the scene tree for the first time.
 func _unhandled_input(event: InputEvent) -> void:
@@ -20,8 +23,10 @@ func _on_pause_button_pressed() -> void:
 
 
 func _on_player_died() -> void:
-	get_tree().paused = true
-	continue_panel.show()
+	if continues > 0:
+		get_tree().paused = true
+		remainign_cont_label.text=str("Remaining continues: ", continues)
+		continue_panel.show()
 
 
 func toggle_pause(status: bool) -> void:
