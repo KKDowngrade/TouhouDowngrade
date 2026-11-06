@@ -1,19 +1,13 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Script" uid="uid://bqlp5lgb4d5h7" path="res://scripts/character_body_2d.gd" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://d1k133yxl1vf1" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="1_sugp2"]
-[ext_resource type="Texture2D" uid="uid://cakflfh2a5ih1" path="res://assets/PlayerNormal.png" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dtclgpudk4ih3" path="res://scenes/bullet.tscn" id="3_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://dxfadl4q6dh3h" path="res://assets/PlayerFocus.png" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="2_muem4"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
-[ext_resource type="AudioStream" uid="uid://vnaoj2kahvw5" path="res://assets/shot_sound.sfxr" id="6_gqmmt"]
 [ext_resource type="Script" uid="uid://cp78o3yguwkcq" path="res://scripts/boss_spawner.gd" id="6_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://cd2gys781u43v" path="res://scenes/enemy_boss1.tscn" id="7_muem4"]
-[ext_resource type="AudioStream" uid="uid://dr5wpq3gnhuwu" path="res://assets/hit_sound.sfxr" id="7_yc10j"]
 [ext_resource type="Script" uid="uid://clvi86eqro3gl" path="res://scripts/hud.gd" id="8_dp3eg"]
-[ext_resource type="AudioStream" uid="uid://ce34qc0nkiyjl" path="res://assets/drop_pick_sound.sfxr" id="8_jscy8"]
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
@@ -23,15 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://vlhqw7u6w11v" path="res://assets/Boss1.png" id="23_pm3ni"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
-radius = 5.0990195
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0yc80"]
-radius = 42.190044
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_arqo0"]
-radius = 35.22783
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
 size = Vector2(593.5, 33)
@@ -74,47 +59,8 @@ boss_health_bar = NodePath("HUD/ReferenceRect/BossHealthPanel/BossHealthBar")
 boss_name_label = NodePath("HUD/ReferenceRect/BossHealthPanel/BossNameLabel")
 boss_health_panel = NodePath("HUD/ReferenceRect/BossHealthPanel")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=2014955276]
+[node name="Player" parent="." unique_id=1215641198 instance=ExtResource("2_muem4")]
 position = Vector2(332, 630)
-collision_layer = 2
-script = ExtResource("1_0wfyh")
-normal_texture = ExtResource("2_sugp2")
-focus_texture = ExtResource("4_tipki")
-bullet_scene = ExtResource("3_o6xl0")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1960556541]
-scale = Vector2(0.88, 0.88)
-texture = ExtResource("2_sugp2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=202998651]
-position = Vector2(0, -12)
-shape = SubResource("CircleShape2D_rxva8")
-
-[node name="Cannon" type="Marker2D" parent="Player" unique_id=1882558076]
-position = Vector2(11, -36)
-
-[node name="DropCollectorArea" type="Area2D" parent="Player" unique_id=1268539901]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DropCollectorArea" unique_id=69299990]
-shape = SubResource("CircleShape2D_0yc80")
-
-[node name="ScratchArea" type="Area2D" parent="Player" unique_id=383968501]
-collision_layer = 64
-collision_mask = 36
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/ScratchArea" unique_id=925620646]
-shape = SubResource("CircleShape2D_arqo0")
-
-[node name="Shot_Sound" type="AudioStreamPlayer2D" parent="Player" unique_id=1319749081]
-stream = ExtResource("6_gqmmt")
-
-[node name="HitSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1922430848]
-stream = ExtResource("7_yc10j")
-
-[node name="PickDropSound" type="AudioStreamPlayer2D" parent="Player" unique_id=1194677473]
-stream = ExtResource("8_jscy8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
 position = Vector2(-4, -1)
@@ -411,7 +357,6 @@ position = Vector2(77, -99)
 texture = ExtResource("23_pm3ni")
 hframes = 2
 
-[connection signal="body_entered" from="Player/ScratchArea" to="Player" method="_on_scratch_area_body_entered"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="." method="_on_pause_button_pressed"]

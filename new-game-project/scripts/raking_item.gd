@@ -35,6 +35,7 @@ func _on_player_name_text_submitted(new_text: String) -> void:
 		set_focus()
 	else:
 		player_name_line_edit.text = player_name_line_edit.text.to_upper()
+		player_name = new_text
 		EventBus.score_submitted.emit(self)
 		player_name_line_edit.editable = false
 	

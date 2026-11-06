@@ -40,7 +40,9 @@ func populate_ranks() -> void:
 	
 func _on_rank_submitted(item: RankingItem) -> void:
 	main_menu_button.disabled = false
-	#TODO: Salvar recorde novo no gamedata
+	game_data.ranking[item.score] = str(item.player_name)
+	GameManger.save_data()
+	
 	
 
 func _on_main_menu_pressed() -> void:
