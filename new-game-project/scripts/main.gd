@@ -36,6 +36,7 @@ func _ready() -> void:
 	EventBus.life_lost.connect(_life_lost)
 	EventBus.bomb_used.connect(_bomb_used)
 	EventBus.boss_health_changed.connect(_on_boss_health_changed)
+	EventBus.player_died.connect(_on_player_died)
 	
 
 func _power_upated(amount: int) -> void:
@@ -67,4 +68,7 @@ func _on_boss_health_changed(health: int, max_health:int) -> void:
 	boss_health_panel.show()
 	boss_health_bar.max_value = max_health
 	boss_health_bar.value = health
+	
+func _on_player_died() -> void:
+	GameManger.game_data.score = score
 	

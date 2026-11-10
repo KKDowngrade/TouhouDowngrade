@@ -11,3 +11,4 @@ signal player_died
 signal run_continued
 signal game_finished
 signal score_submitted(item: RankingItem)
+signal player_search(node: Node)

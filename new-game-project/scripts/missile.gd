@@ -6,9 +6,11 @@ extends Area2D
 @export var speed: float = 500.0
 @export var direction := Vector2.DOWN
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+var player1: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	animation_player.play("missile_animation")
+	EventBus.player_search.emit(self)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

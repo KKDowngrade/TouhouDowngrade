@@ -29,6 +29,8 @@ func populate_ranks() -> void:
 	if is_new_record == true:
 		game_data.ranking.erase(game_data.ranking.keys()[0])
 	game_data.ranking.sort()
+	
+	
 	for rank in game_data.ranking.keys():
 		var item: RankingItem = RAKING_ITEM.instantiate() as RankingItem
 		raking_list.add_child(item)
@@ -36,6 +38,9 @@ func populate_ranks() -> void:
 		item.set_item(game_data.ranking[rank], rank)
 		if rank == current_score:
 			item.set_focus()
+			
+	if is_new_record == false:
+		main_menu_button.disabled = false
 	
 	
 func _on_rank_submitted(item: RankingItem) -> void:

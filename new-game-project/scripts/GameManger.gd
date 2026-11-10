@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func save_data() -> void:
+	
 	ResourceSaver.save(game_data, SAVE_PATH)
 	
 func save_default_data() -> void:

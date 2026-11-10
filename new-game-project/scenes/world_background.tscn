@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://btr11n1wpbqq1"]
+
+[ext_resource type="Script" uid="uid://cpfmdeg673m1m" path="res://scripts/world_background.gd" id="1_t8jpx"]
+[ext_resource type="Texture2D" uid="uid://c3ovi27pamttf" path="res://assets/skybox-space-galaxy.png" id="2_n2b16"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_muem4"]
+panorama = ExtResource("2_n2b16")
+
+[sub_resource type="Sky" id="Sky_n2b16"]
+sky_material = SubResource("PanoramaSkyMaterial_muem4")
+
+[sub_resource type="Environment" id="Environment_5egfk"]
+background_mode = 2
+sky = SubResource("Sky_n2b16")
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_0yc80"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="Gradient" id="Gradient_duagi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.18099548, 0.26696834, 0.33484164)
+colors = PackedColorArray(2.7073547e-06, 0.46741235, 5.7756904e-07, 1, 0.5414989, 0.43293574, 0.17366257, 1, 2.887845e-06, 0, 0.7245649, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n2b16"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t8jpx"]
+noise = SubResource("FastNoiseLite_n2b16")
+color_ramp = SubResource("Gradient_duagi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duagi"]
+albedo_texture = SubResource("NoiseTexture2D_t8jpx")
+roughness = 0.3
+rim_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_gqmmt"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.239819, 0.6334842)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0ld40"]
+seed = 2
+frequency = 0.0179
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dp3eg"]
+noise = SubResource("FastNoiseLite_0ld40")
+color_ramp = SubResource("Gradient_gqmmt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muem4"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_dp3eg")
+
+[sub_resource type="SphereMesh" id="SphereMesh_wkpy8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1omvj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i241j"]
+noise = SubResource("FastNoiseLite_1omvj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxkqy"]
+albedo_texture = SubResource("NoiseTexture2D_i241j")
+
+[node name="WorldBackground" type="Node3D" unique_id=704459088]
+script = ExtResource("1_t8jpx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1119997928]
+environment = SubResource("Environment_5egfk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2016134303]
+transform = Transform3D(-0.8660254, -0.43301275, 0.25000006, -0.03296802, 0.5483639, 0.8355897, -0.49891198, 0.71539986, -0.48917264, 0, 0, 11.762484)
+light_energy = 0.208
+shadow_enabled = true
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1911432181]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=2033302335]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, 0)
+fov = 77.4
+
+[node name="WorldModel" type="Marker3D" parent="." unique_id=376329488]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel" unique_id=49270292]
+mesh = SubResource("SphereMesh_0yc80")
+surface_material_override/0 = SubResource("StandardMaterial3D_duagi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WorldModel" unique_id=1796701614]
+transform = Transform3D(1.065, 0, 0, 0, 1.065, 0, 0, 0, 1.065, 0, 0, 0)
+mesh = SubResource("SphereMesh_0yc80")
+surface_material_override/0 = SubResource("StandardMaterial3D_muem4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="WorldModel" unique_id=816674147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08765888, 0, 8.550343)
+mesh = SubResource("SphereMesh_wkpy8")
+surface_material_override/0 = SubResource("StandardMaterial3D_lxkqy")

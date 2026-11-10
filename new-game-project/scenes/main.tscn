@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1k133yxl1vf1" path="res://scripts/main.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://btr11n1wpbqq1" path="res://scenes/world_background.tscn" id="2_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="2_muem4"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
@@ -16,7 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://vlhqw7u6w11v" path="res://assets/Boss1.png" id="23_pm3ni"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0yc80"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
 size = Vector2(593.5, 33)
@@ -58,6 +61,15 @@ script = ExtResource("1_jyhfs")
 boss_health_bar = NodePath("HUD/ReferenceRect/BossHealthPanel/BossHealthBar")
 boss_name_label = NodePath("HUD/ReferenceRect/BossHealthPanel/BossNameLabel")
 boss_health_panel = NodePath("HUD/ReferenceRect/BossHealthPanel")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2053709526]
+position = Vector2(334, 368)
+texture = SubResource("ViewportTexture_0yc80")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=59978842]
+size = Vector2i(600, 800)
+
+[node name="WorldBackground" parent="SubViewport" unique_id=704459088 instance=ExtResource("2_dp3eg")]
 
 [node name="Player" parent="." unique_id=1215641198 instance=ExtResource("2_muem4")]
 position = Vector2(332, 630)
@@ -353,9 +365,10 @@ environment = SubResource("Environment_0yc80")
 position = Vector2(-2, -1)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1431018990]
+modulate = Color(18.892157, 18.892157, 18.892157, 1)
 position = Vector2(77, -99)
-texture = ExtResource("23_pm3ni")
-hframes = 2
+scale = Vector2(2, 2)
+texture = ExtResource("14_a8y0u")
 
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]

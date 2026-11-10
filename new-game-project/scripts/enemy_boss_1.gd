@@ -22,6 +22,7 @@ func _on_entity_damaged() -> void:
 
 
 func _on_timer_timeout() -> void:
+	print("tiro")
 	var missile := missile_scene.instantiate() as Missile
-	missile.global_position = marker_2d.global_position
 	add_sibling(missile)
+	missile.global_position = marker_2d.global_position

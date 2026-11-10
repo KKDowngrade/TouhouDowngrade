@@ -35,6 +35,7 @@ func _ready() -> void:
 	EventBus.drop_collected.connect(_on_drop_collected)
 	power_level_up()
 	EventBus.run_continued.connect(_on_run_continued)
+	EventBus.player_search.connect(_on_player_search)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Spell"):
@@ -310,3 +311,7 @@ func _on_run_continued() -> void:
 	await  get_tree().create_timer(invencibility_time).timeout
 	invencible = false
 	
+
+func _on_player_search(node: Node) -> void:
+	if "player_" in node:
+		node.player = self
