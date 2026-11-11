@@ -313,5 +313,5 @@ func _on_run_continued() -> void:
 	
 
 func _on_player_search(node: Node) -> void:
-	if "player_" in node:
-		node.player = self
+	if "player1" in node:
+		node.player1 = self

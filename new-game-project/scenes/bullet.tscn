@@ -4,21 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="2_y25gk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
-radius = 4.472136
+radius = 11.0
 
 [node name="Bullet" type="Area2D" unique_id=680679307]
 collision_layer = 16
 collision_mask = 4
 script = ExtResource("1_mkf8s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1492501596]
-shape = SubResource("CircleShape2D_rxva8")
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1024954767]
-modulate = Color(11.88096, 11.88096, 11.88096, 1)
-scale = Vector2(1.75, 1.75)
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_y25gk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1346923884]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1492501596]
+shape = SubResource("CircleShape2D_rxva8")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

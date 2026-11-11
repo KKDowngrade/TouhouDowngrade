@@ -11,11 +11,17 @@ var player1: Node
 func _ready() -> void:
 	animation_player.play("missile_animation")
 	EventBus.player_search.emit(self)
+	speed = 100
+	await  get_tree().create_timer(1).timeout
+	speed = 500
+	direction = global_position.direction_to(player1.global_position)
+	rotation = direction.angle() - PI / 2
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
+	global_position += direction * speed * delta
 	
 
 

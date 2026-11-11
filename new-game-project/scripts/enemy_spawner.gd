@@ -22,7 +22,7 @@ func  _physics_process(delta: float) -> void:
 	
 func get_next_horde() -> void:
 	if hordes.size() <= 0:
-		get_tree().create_timer(5).timeout.connect(all_hordes_finished.emit)
+		get_tree().create_timer(10).timeout.connect(all_hordes_finished.emit)
 		set_physics_process(false)
 		return
 	next_horde = hordes[0]
