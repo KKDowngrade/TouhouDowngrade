@@ -4,9 +4,21 @@ extends CanvasLayer
 @export var continue_panel: Control
 @export var remainign_cont_label: Control
 @export var game_over_panel: Control
+@onready var points_label: RichTextLabel = $VBoxContainer/PointsLabel
+@onready var life_label: RichTextLabel = $VBoxContainer/LifeLabel
+@onready var spells_label: RichTextLabel = $VBoxContainer/SpellsLabel
+@onready var scratch_label: RichTextLabel = $VBoxContainer/ScratchLabel
+
+var life: int = 3
+var score: int = 0
+var bombs: int = 3
+var max_life: int = 7
+var max_bombs: int = 7
+var power: int = 0
+var continues: int = 5
+var scratch: int = 0
 
 
-var continues: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _unhandled_input(event: InputEvent) -> void:

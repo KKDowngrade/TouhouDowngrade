@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://1c5l4xu22eel"]
+
+[ext_resource type="Script" uid="uid://ej1hs07jups" path="res://scripts/enemy_ball.gd" id="1_c6lfg"]
+[ext_resource type="PackedScene" uid="uid://h1xvd6easkrt" path="res://scenes/enemy_bullet.tscn" id="2_5aiud"]
+[ext_resource type="Texture2D" uid="uid://dkrb6a8attikv" path="res://assets/EnemyBall.png" id="2_e3bdn"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="3_5aiud"]
+[ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="4_5ytt8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
+radius = 14.035668
+
+[node name="enemy_ball" type="Area2D" unique_id=507061330]
+script = ExtResource("1_c6lfg")
+bullet_scene = ExtResource("2_5aiud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=947459988]
+shape = SubResource("CircleShape2D_rxva8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1295198305]
+texture = ExtResource("2_e3bdn")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=905783119]
+position = Vector2(0, -14)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=648323828]
+position = Vector2(-9, -9)
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=879556433]
+position = Vector2(-14, 0)
+
+[node name="Marker2D4" type="Marker2D" parent="." unique_id=670502646]
+position = Vector2(-9, 9)
+
+[node name="Marker2D5" type="Marker2D" parent="." unique_id=1355679536]
+position = Vector2(9, -9)
+
+[node name="Marker2D6" type="Marker2D" parent="." unique_id=1322064146]
+position = Vector2(9, 9)
+
+[node name="Marker2D7" type="Marker2D" parent="." unique_id=623523492]
+position = Vector2(0, 14)
+
+[node name="Marker2D8" type="Marker2D" parent="." unique_id=687091788]
+position = Vector2(14, 0)
+
+[node name="Entity" type="Node" parent="." unique_id=1934546973 node_paths=PackedStringArray("entity_owner")]
+script = ExtResource("3_5aiud")
+entity_owner = NodePath("..")
+speed = 100.0
+drop = ExtResource("4_5ytt8")
+drop_types = Array[int]([0, 1])
+enemy_type = 1
+metadata/_custom_type_script = "uid://4we8vic82cr2"
+
+[node name="Timer" type="Timer" parent="." unique_id=867328347]
+autostart = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1641887170]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

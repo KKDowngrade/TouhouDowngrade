@@ -4,13 +4,24 @@ const SAVE_PATH: String = "user://save_data.tres"
 
 var life: int = 3
 var bombs: int = 3
+var score: int = 0
+var scratch: int = 0
+var power: int = 0
 @export var game_data: GameData = GameData.new()
 
 
 func _ready() -> void:
 	load_data()
+	EventBus.scored.connect(_on_player_scored)
 	EventBus.game_finished.connect(_on_game_finished)
+	EventBus.life_lost.connect(_life_losted)
 
+func _on_player_scored(score_player: int) -> void:
+	score = score_player
+
+
+func _life_losted(lifes: int) -> void:
+	life = lifes
 
 
 func save_data() -> void:

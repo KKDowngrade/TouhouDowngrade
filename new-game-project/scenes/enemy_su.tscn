@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://8soo1u6urp05"]
+
+[ext_resource type="Script" uid="uid://cfma0xq2lhef6" path="res://scripts/enemy_su.gd" id="1_6ji78"]
+[ext_resource type="Texture2D" uid="uid://bugd0uakqq1nt" path="res://assets/EnemySu.png" id="1_mhw36"]
+[ext_resource type="PackedScene" uid="uid://bm3bupqobbc1k" path="res://scenes/enemy_shot.tscn" id="2_5bdkl"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="2_6ji78"]
+[ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="3_5bdkl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
+radius = 32.38827
+
+[sub_resource type="Animation" id="Animation_c5wha"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6086f"]
+resource_name = "enemy_su_animation"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_auuh5"]
+_data = {
+&"RESET": SubResource("Animation_c5wha"),
+&"enemy_su_animation": SubResource("Animation_6086f")
+}
+
+[node name="EnemySu" type="Area2D" unique_id=902782102 node_paths=PackedStringArray("entityy")]
+script = ExtResource("1_6ji78")
+entityy = NodePath("Entity")
+bullet_scene = ExtResource("2_5bdkl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=186829387]
+texture = ExtResource("1_mhw36")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77586292]
+shape = SubResource("CircleShape2D_rxva8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=766688924]
+libraries/ = SubResource("AnimationLibrary_auuh5")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1862125366]
+position = Vector2(0, 32)
+
+[node name="Timer" type="Timer" parent="." unique_id=1031258140]
+autostart = true
+
+[node name="Entity" type="Node" parent="." unique_id=1613857046 node_paths=PackedStringArray("entity_owner")]
+script = ExtResource("2_6ji78")
+entity_owner = NodePath("..")
+speed = 100.0
+drop = ExtResource("3_5bdkl")
+drop_types = Array[int]([0, 1])
+enemy_type = 1
+metadata/_custom_type_script = "uid://4we8vic82cr2"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

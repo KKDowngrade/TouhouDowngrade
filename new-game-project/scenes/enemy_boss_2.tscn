@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://crjkr4e6qpy3l"]
+
+[ext_resource type="Script" uid="uid://tisy8lvgms6o" path="res://scripts/enemy_boss_2.gd" id="1_degcn"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="1_tdboo"]
+[ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="2_degcn"]
+[ext_resource type="PackedScene" uid="uid://bm3bupqobbc1k" path="res://scenes/enemy_shot.tscn" id="2_o1mv0"]
+[ext_resource type="Texture2D" uid="uid://dglogr3vbnts2" path="res://assets/Boss2.png" id="3_o1mv0"]
+
+[sub_resource type="Curve2D" id="Curve2D_sc3vj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -1, 0, 0, 0, 0, -39, 21, 0, 0, 0, 0, -53, 37, 0, 0, 0, 0, -67, 63, 0, 0, 0, 0, -59, 104, 0, 0, 0, 0, -36, 119, 0, 0, 0, 0, -1, 133, 0, 0, 0, 0, 25, 122, 0, 0, 0, 0, 50, 106, 0, 0, 0, 0, 63, 63, 0, 0, 0, 0, 55, 33, 0, 0, 0, 0, 38, 16, 0, 0, 0, 0, -1, -1)
+}
+point_count = 13
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
+
+[node name="EnemyBoss2" type="Node2D" unique_id=528186645 node_paths=PackedStringArray("entity", "path_follow")]
+script = ExtResource("1_degcn")
+entity = NodePath("Path2D/PathFollow2D/Area2D/Entity")
+bullet_scene = ExtResource("2_o1mv0")
+path_follow = NodePath("Path2D/PathFollow2D")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1184062247]
+curve = SubResource("Curve2D_sc3vj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1884447157]
+position = Vector2(-1, -1)
+rotation = 2.616797
+rotates = false
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D" unique_id=209769705]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D" unique_id=1743659918]
+shape = SubResource("CircleShape2D_rxva8")
+
+[node name="Entity" type="Node" parent="Path2D/PathFollow2D/Area2D" unique_id=196335480 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
+script = ExtResource("1_tdboo")
+entity_owner = NodePath("../../../..")
+health = 100
+speed = 50.0
+drop = ExtResource("2_degcn")
+drop_types = Array[int]([0, 1])
+max_health = 100
+metadata/_custom_type_script = "uid://4we8vic82cr2"
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D" unique_id=1313601815]
+rotation = 3.6677525
+texture = ExtResource("3_o1mv0")
+
+[node name="Timer" type="Timer" parent="Path2D/PathFollow2D/Area2D" unique_id=820782852]
+autostart = true
+
+[node name="Cannon1" type="Marker2D" parent="Path2D/PathFollow2D/Area2D" unique_id=723211419]
+position = Vector2(30.153275, -2.1863437)
+
+[node name="Cannon2" type="Marker2D" parent="Path2D/PathFollow2D/Area2D" unique_id=26598538]
+position = Vector2(-13.61908, -26.372726)
+
+[connection signal="timeout" from="Path2D/PathFollow2D/Area2D/Timer" to="." method="_on_timer_timeout"]

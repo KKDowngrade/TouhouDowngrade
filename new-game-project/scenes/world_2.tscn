@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dd0707nmcba2f"]
+
+[ext_resource type="Script" uid="uid://btfqyis23bgv8" path="res://scripts/world_2.gd" id="1_kiokp"]
+[ext_resource type="Texture2D" uid="uid://m71ruov3og72" path="res://assets/skybox-space-nebula.png" id="2_2diqr"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gqj1d"]
+panorama = ExtResource("2_2diqr")
+
+[sub_resource type="Sky" id="Sky_axyqp"]
+sky_material = SubResource("PanoramaSkyMaterial_gqj1d")
+
+[sub_resource type="Environment" id="Environment_3m0gu"]
+background_mode = 2
+sky = SubResource("Sky_axyqp")
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_rxva8"]
+
+[sub_resource type="Gradient" id="Gradient_mbnxc"]
+offsets = PackedFloat32Array(0.1716418, 0.6119403)
+colors = PackedColorArray(0.22068143, 0.040065967, 0.04470557, 1, 0.8266126, 0.38510588, 0.24159756, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j0xqg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k4y6x"]
+noise = SubResource("FastNoiseLite_j0xqg")
+color_ramp = SubResource("Gradient_mbnxc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arqo0"]
+albedo_texture = SubResource("NoiseTexture2D_k4y6x")
+
+[node name="World2" type="Node3D" unique_id=521666189]
+script = ExtResource("1_kiokp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=677916075]
+environment = SubResource("Environment_3m0gu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1699861202]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=988755028]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1269946828]
+transform = Transform3D(1, 0, 0, 0, -0.021360604, 0.99977183, 0, -0.99977183, -0.021360604, 0, 1.3884015, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=781361842]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D2" unique_id=1435874669]
+mesh = SubResource("SphereMesh_rxva8")
+surface_material_override/0 = SubResource("StandardMaterial3D_arqo0")

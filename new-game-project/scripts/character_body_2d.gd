@@ -32,6 +32,8 @@ var flash_tween: Tween
 func _ready() -> void:
 	bombs = GameManger.bombs
 	lifes = GameManger.life
+	score = GameManger.score
+	power_amount = GameManger.power
 	EventBus.drop_collected.connect(_on_drop_collected)
 	power_level_up()
 	EventBus.run_continued.connect(_on_run_continued)

@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="G.O.S.T.O.S.A Downgrade"
 run/main_scene="uid://2yvq6yiiep7y"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"

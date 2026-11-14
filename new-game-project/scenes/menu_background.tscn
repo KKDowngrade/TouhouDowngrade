@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://di51hp7eabv0r"]
+
+[ext_resource type="Texture2D" uid="uid://kata8gfdb0jh" path="res://assets/skybox-space-dark.png" id="1_m27td"]
+[ext_resource type="Script" uid="uid://dikgv5fae4osk" path="res://scripts/menu_background.gd" id="1_mypsn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4ro7b"]
+panorama = ExtResource("1_m27td")
+
+[sub_resource type="Sky" id="Sky_mypsn"]
+sky_material = SubResource("PanoramaSkyMaterial_4ro7b")
+
+[sub_resource type="Environment" id="Environment_7js8a"]
+background_mode = 2
+sky = SubResource("Sky_mypsn")
+glow_enabled = true
+
+[node name="MenuBackground" type="Node3D" unique_id=1810424623]
+script = ExtResource("1_mypsn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=859540434]
+environment = SubResource("Environment_7js8a")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1750896278]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=2004984529]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.3191462, 0)

@@ -41,6 +41,8 @@ func _ready() -> void:
 
 func _power_upated(amount: int) -> void:
 	power_barr.value = amount
+	power = amount
+	GameManger.power = amount
 	
 	
 func _score_updated(points: int) -> void:

@@ -14,9 +14,9 @@
 [ext_resource type="Resource" uid="uid://3dvfrmdpc0ia" path="res://resource/horde_data_basic.tres" id="11_a8y0u"]
 [ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="12_0ld40"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="12_jkv2x"]
-[ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="13_trceg"]
 [ext_resource type="Texture2D" uid="uid://dwjvvcfecyykm" path="res://assets/Bullet.png" id="14_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="15_muem4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0yc80"]
 viewport_path = NodePath("SubViewport")
@@ -38,15 +38,15 @@ bg_color = Color(0, 0, 1, 1)
 
 [sub_resource type="Resource" id="Resource_rxva8"]
 script = ExtResource("12_jkv2x")
-enemy_scene = ExtResource("13_trceg")
+enemy_scene = ExtResource("15_muem4")
 metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 
 [sub_resource type="Resource" id="Resource_vuit1"]
 script = ExtResource("10_trceg")
-time = 8.0
+time = 10.0
 enemies = Array[ExtResource("12_jkv2x")]([SubResource("Resource_rxva8")])
-spanw_points = Array[int]([4, 7])
-spawn_per_wave = 2
+spanw_points = Array[int]([0, 1, 2, 3, 8, 9, 10, 11])
+spawn_per_wave = 8
 wave_delay = 1.0
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
@@ -198,7 +198,7 @@ alignment = 1
 [node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1583350694]
 layout_mode = 2
 bbcode_enabled = true
-text = "Boss Bug"
+text = " [color=red]Alpha Two "
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -352,7 +352,7 @@ position = Vector2(480, 6)
 position = Vector2(523, 6)
 
 [node name="SpawnPoint12" type="Marker2D" parent="EnemySpawner" unique_id=315106965]
-position = Vector2(574, 6)
+position = Vector2(565, 6)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=937890028]
 modulate = Color(18.892157, 18.892157, 18.892157, 1)

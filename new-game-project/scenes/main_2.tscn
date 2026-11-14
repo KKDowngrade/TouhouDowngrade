@@ -1,0 +1,340 @@
+[gd_scene format=3 uid="uid://dirthsek08cwd"]
+
+[ext_resource type="Script" uid="uid://xttmfp3p60tx" path="res://scripts/hud2.gd" id="1_43ty5"]
+[ext_resource type="PackedScene" uid="uid://dd0707nmcba2f" path="res://scenes/world_2.tscn" id="1_rkluo"]
+[ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="2_rkluo"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="3_ywx0f"]
+[ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="4_e1hce"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="5_hmh72"]
+[ext_resource type="Script" uid="uid://det0afyh1y4k0" path="res://scripts/enemy_spawner2.gd" id="7_r4383"]
+[ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="8_1k1ng"]
+[ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="10_k6ibc"]
+[ext_resource type="PackedScene" uid="uid://cgxu3k6l4i7a6" path="res://scenes/enemy_a.tscn" id="10_ugyvg"]
+[ext_resource type="PackedScene" uid="uid://1c5l4xu22eel" path="res://scenes/enemy_ball.tscn" id="11_xb34a"]
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="12_1k1ng"]
+[ext_resource type="PackedScene" uid="uid://8soo1u6urp05" path="res://scenes/enemy_su.tscn" id="12_wwjik"]
+[ext_resource type="Script" uid="uid://cdbl515c4voad" path="res://scripts/boss_sawner2.gd" id="13_k6ibc"]
+[ext_resource type="PackedScene" uid="uid://crjkr4e6qpy3l" path="res://scenes/enemy_boss_2.tscn" id="14_wwjik"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rxva8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Theme" id="Theme_r4383"]
+default_font = ExtResource("3_ywx0f")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xb34a"]
+bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k1ng"]
+bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ylgb6"]
+script = ExtResource("10_k6ibc")
+enemy_scene = ExtResource("10_ugyvg")
+metadata/_custom_type_script = "uid://d17nc5pj78gqw"
+
+[sub_resource type="Resource" id="Resource_sc3vj"]
+script = ExtResource("8_1k1ng")
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_ylgb6")])
+spanw_points = Array[int]([2, 3, 8, 9])
+spawn_per_wave = 4
+wave_delay = 1.0
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"
+
+[sub_resource type="Resource" id="Resource_arqo0"]
+script = ExtResource("10_k6ibc")
+enemy_scene = ExtResource("11_xb34a")
+metadata/_custom_type_script = "uid://d17nc5pj78gqw"
+
+[sub_resource type="Resource" id="Resource_rxva8"]
+script = ExtResource("8_1k1ng")
+time = 4.0
+amount = 1
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_arqo0")])
+spanw_points = Array[int]([5, 6])
+spawn_per_wave = 2
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"
+
+[sub_resource type="Resource" id="Resource_c5wha"]
+script = ExtResource("10_k6ibc")
+enemy_scene = ExtResource("12_wwjik")
+metadata/_custom_type_script = "uid://d17nc5pj78gqw"
+
+[sub_resource type="Resource" id="Resource_5bdkl"]
+script = ExtResource("8_1k1ng")
+time = 6.0
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_c5wha")])
+spanw_points = Array[int]([2, 3, 8, 9])
+spawn_per_wave = 4
+wave_delay = 1.0
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"
+
+[node name="main2" type="Node2D" unique_id=726778003]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1710815036]
+position = Vector2(334, 351)
+texture = SubResource("ViewportTexture_rxva8")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=591482019]
+size = Vector2i(600, 800)
+
+[node name="World2" parent="SubViewport" unique_id=521666189 instance=ExtResource("1_rkluo")]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1069882516 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label", "game_over_panel")]
+process_mode = 3
+script = ExtResource("1_43ty5")
+pause_panel = NodePath("ReferenceRect/PausePanel")
+continue_panel = NodePath("ReferenceRect/ContinuePanel")
+remainign_cont_label = NodePath("ReferenceRect/ContinuePanel/RemainingContLabel")
+game_over_panel = NodePath("ReferenceRect/GameOverPanel")
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=714513042]
+position = Vector2(479, 359)
+texture = ExtResource("2_rkluo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1443818986]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 90.0
+offset_right = -21.0
+offset_bottom = 195.0
+grow_horizontal = 0
+theme = SubResource("Theme_r4383")
+
+[node name="PointsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1812232464]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="LifeLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1590828693]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug
+"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="SpellsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=634842395]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
+[node name="ScratchLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=782649988]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer" unique_id=1745844838]
+layout_mode = 2
+
+[node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=961319637]
+layout_mode = 2
+bbcode_enabled = true
+text = "[color=blue]Power"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="PowerBarr" type="ProgressBar" parent="HUD/VBoxContainer/HBoxContainer" unique_id=339171560]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xb34a")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1k1ng")
+value = 80.0
+script = ExtResource("4_e1hce")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="HUD" unique_id=200747524]
+offset_left = 43.0
+offset_top = 22.0
+offset_right = 626.0
+offset_bottom = 695.0
+
+[node name="BossHealthPanel" type="HBoxContainer" parent="HUD/ReferenceRect" unique_id=1760282636]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+theme = ExtResource("5_hmh72")
+alignment = 1
+
+[node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1310530790]
+layout_mode = 2
+bbcode_enabled = true
+text = " [color=red]Omega Three"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=2034274933]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+show_percentage = false
+
+[node name="ContinuePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=225174316]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -29.0
+offset_right = 39.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_hmh72")
+
+[node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1103186623]
+layout_mode = 2
+bbcode_enabled = true
+text = "Continue?"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ReferenceRect/ContinuePanel" unique_id=814628815]
+layout_mode = 2
+alignment = 1
+
+[node name="ContinueYes" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1559308011]
+layout_mode = 2
+text = "Yes"
+
+[node name="ContinueNo" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=339337360]
+layout_mode = 2
+text = "No"
+
+[node name="RemainingContLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1964735743]
+layout_mode = 2
+bbcode_enabled = true
+text = "BUG BUG"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PausePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=1125626654]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_hmh72")
+
+[node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=274171088]
+layout_mode = 2
+bbcode_enabled = true
+text = "Paused"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PauseButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=385921703]
+layout_mode = 2
+text = "tr_resume"
+
+[node name="QuitButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1631915894]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="GameOverPanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=2033533694]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_hmh72")
+
+[node name="GameOverLabel" type="RichTextLabel" parent="HUD/ReferenceRect/GameOverPanel" unique_id=1273114287]
+layout_mode = 2
+bbcode_enabled = true
+text = "GAMEOVER"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverButton" type="Button" parent="HUD/ReferenceRect/GameOverPanel" unique_id=91191736]
+layout_mode = 2
+text = "OK"
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1672995908]
+script = ExtResource("7_r4383")
+hordes = Array[ExtResource("8_1k1ng")]([SubResource("Resource_sc3vj"), SubResource("Resource_rxva8"), SubResource("Resource_5bdkl")])
+
+[node name="SpawnPoint1" type="Marker2D" parent="EnemySpawner" unique_id=153682302]
+position = Vector2(75, 6)
+
+[node name="SpawnPoint2" type="Marker2D" parent="EnemySpawner" unique_id=364394427]
+position = Vector2(129, 6)
+
+[node name="SpawnPoint3" type="Marker2D" parent="EnemySpawner" unique_id=43246746]
+position = Vector2(170, 6)
+
+[node name="SpawnPoint4" type="Marker2D" parent="EnemySpawner" unique_id=469792305]
+position = Vector2(210, 6)
+
+[node name="SpawnPoint5" type="Marker2D" parent="EnemySpawner" unique_id=1418743002]
+position = Vector2(253, 6)
+
+[node name="SpawnPoint6" type="Marker2D" parent="EnemySpawner" unique_id=997954736]
+position = Vector2(286, 6)
+
+[node name="SpawnPoint7" type="Marker2D" parent="EnemySpawner" unique_id=992710246]
+position = Vector2(360, 6)
+
+[node name="SpawnPoint8" type="Marker2D" parent="EnemySpawner" unique_id=947828595]
+position = Vector2(399, 6)
+
+[node name="SpawnPoint9" type="Marker2D" parent="EnemySpawner" unique_id=1540491180]
+position = Vector2(437, 6)
+
+[node name="SpawnPoint10" type="Marker2D" parent="EnemySpawner" unique_id=201238780]
+position = Vector2(480, 6)
+
+[node name="SpawnPoint11" type="Marker2D" parent="EnemySpawner" unique_id=511376516]
+position = Vector2(523, 6)
+
+[node name="SpawnPoint12" type="Marker2D" parent="EnemySpawner" unique_id=1504353090]
+position = Vector2(565, 6)
+
+[node name="Player" parent="." unique_id=1215641198 instance=ExtResource("12_1k1ng")]
+position = Vector2(332, 630)
+
+[node name="BossSawner" type="Marker2D" parent="." unique_id=1390026423]
+position = Vector2(349, 78)
+script = ExtResource("13_k6ibc")
+boss_scene = ExtResource("14_wwjik")
+
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="HUD" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/QuitButton" to="HUD" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/GameOverPanel/GameOverButton" to="HUD" method="_on_game_over_button_pressed"]
+[connection signal="all_hordes_finished" from="EnemySpawner" to="BossSawner" method="_on_enemy_spawner_all_hordes_finished"]

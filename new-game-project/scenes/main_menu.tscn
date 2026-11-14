@@ -2,8 +2,25 @@
 
 [ext_resource type="Script" uid="uid://df8gpggjw138q" path="res://scripts/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="2_wu84c"]
+[ext_resource type="PackedScene" uid="uid://di51hp7eabv0r" path="res://scenes/menu_background.tscn" id="3_bqqt6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rxva8"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxva8"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_arqo0"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
@@ -57,34 +74,65 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ekxnf")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1728517149]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 720.0
+texture = SubResource("ViewportTexture_rxva8")
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1467705070]
+visible = false
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 1)
 
-[node name="NameLabel" type="RichTextLabel" parent="." unique_id=2065505597]
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1215281158]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -207.0
-offset_right = 104.0
-offset_bottom = -167.0
+offset_left = -290.0
+offset_top = -259.25
+offset_right = 290.0
+offset_bottom = -111.25
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_wu84c")
+
+[node name="NameLabel" type="RichTextLabel" parent="VBoxContainer2" unique_id=2065505597]
+layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_l6cm7")
 theme_override_font_sizes/normal_font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxEmpty_bqqt6")
 bbcode_enabled = true
-text = "[wave][rainbow]G.O.S.T.O.S.A[/rainbow]
-Downgrade"
+text = "[wave][rainbow]G.O.S.T.O.S.A[/rainbow]"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer2" unique_id=1036871706]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rxva8")
+bbcode_enabled = true
+text = "[font_size=8][wave](Gorgeous Ostentatious Supe-Technological Ortodoxian Sapient Android)"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer2" unique_id=1160389490]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxEmpty_arqo0")
+bbcode_enabled = true
+text = "[wave]Downgrade"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1716847740]
 layout_mode = 1
@@ -135,6 +183,10 @@ bbcode_enabled = true
 text = "Created by Kim Downgrade"
 fit_content = true
 autowrap_mode = 0
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2104271429]
+
+[node name="MenuBackground" parent="SubViewport" unique_id=1810424623 instance=ExtResource("3_bqqt6")]
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
