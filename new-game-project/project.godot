@@ -15,10 +15,20 @@ run/main_scene="uid://2yvq6yiiep7y"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://djjdult6fwflc"
+
 [autoload]
 
 GameManger="*uid://ce13gqdbl1rdp"
 EventBus="*uid://b4ftauupa56mu"
+Soundtrack="*uid://btx00f6saanrg"
+DialogueManager="*uid://c3rodes2l3gxb"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/balloon.tscn"
 
 [display]
 
@@ -28,7 +38,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdfxr/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gdfxr/plugin.cfg")
 
 [global_group]
 
@@ -83,7 +93,8 @@ pause={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://resource/translation/translations. BR.translation", "res://resource/translation/translations. EN.translation")
+locale/translations=PackedStringArray("res://resource/translation/translations.en.translation", "res://resource/translation/translations.pt.translation")
+locale/translations_pot_files=PackedStringArray("res://resource/level01-0010.dialogue")
 
 [layer_names]
 

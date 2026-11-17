@@ -72,6 +72,7 @@ metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 [node name="main2" type="Node2D" unique_id=726778003]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1710815036]
+modulate = Color(0.34781694, 0.34781697, 0.3478169, 1)
 position = Vector2(334, 351)
 texture = SubResource("ViewportTexture_rxva8")
 
@@ -83,6 +84,7 @@ size = Vector2i(600, 800)
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1069882516 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label", "game_over_panel")]
 process_mode = 3
 script = ExtResource("1_43ty5")
+next_level = "res://scenes/ranking_screen.tscn"
 pause_panel = NodePath("ReferenceRect/PausePanel")
 continue_panel = NodePath("ReferenceRect/ContinuePanel")
 remainign_cont_label = NodePath("ReferenceRect/ContinuePanel/RemainingContLabel")
@@ -283,6 +285,13 @@ vertical_alignment = 1
 [node name="GameOverButton" type="Button" parent="HUD/ReferenceRect/GameOverPanel" unique_id=91191736]
 layout_mode = 2
 text = "OK"
+
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=100814579]
+offset_left = 926.0
+offset_top = -4.0
+offset_right = 966.0
+offset_bottom = 728.0
+color = Color(0, 0, 0, 1)
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1672995908]
 script = ExtResource("7_r4383")

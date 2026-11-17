@@ -15,6 +15,7 @@ func _ready() -> void:
 	EventBus.scored.connect(_on_player_scored)
 	EventBus.game_finished.connect(_on_game_finished)
 	EventBus.life_lost.connect(_life_losted)
+#	TranslationServer.set_locale("pt")
 
 func _on_player_scored(score_player: int) -> void:
 	score = score_player

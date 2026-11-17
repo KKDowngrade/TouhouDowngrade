@@ -21,7 +21,7 @@ var tween: Tween = create_tween()
 
 
 func take_damage(amount: int) -> void:
-	print(enemy_type)
+	print("ai")
 	health -= amount
 	entity_damaged.emit()
 	feedback_damage()
@@ -61,4 +61,12 @@ func _on_enemy_body_entered(body: Node2D) -> void:
 
 
 func _on_enemy_shooter_body_entered(body: Node2D) -> void:
+	body._taken_damage()
+
+
+func _on_enemy_a_body_entered(body: Node2D) -> void:
+	body._taken_damage()
+
+
+func _on_enemy_ball_body_entered(body: Node2D) -> void:
 	body._taken_damage()

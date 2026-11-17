@@ -48,6 +48,8 @@ _data = {
 }
 
 [node name="EnemySu" type="Area2D" unique_id=902782102 node_paths=PackedStringArray("entityy")]
+collision_layer = 4
+collision_mask = 66
 script = ExtResource("1_6ji78")
 entityy = NodePath("Entity")
 bullet_scene = ExtResource("2_5bdkl")

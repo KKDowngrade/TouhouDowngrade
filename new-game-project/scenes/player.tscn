@@ -51,11 +51,14 @@ shape = SubResource("CircleShape2D_arqo0")
 
 [node name="Shot_Sound" type="AudioStreamPlayer2D" parent="." unique_id=890443829]
 stream = ExtResource("5_d2wvv")
+bus = &"SoundEffects"
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=885490639]
 stream = ExtResource("6_3v2ag")
+bus = &"SoundEffects"
 
 [node name="PickDropSound" type="AudioStreamPlayer2D" parent="." unique_id=1267446483]
 stream = ExtResource("7_jej6c")
+bus = &"SoundEffects"
 
 [connection signal="body_entered" from="ScratchArea" to="." method="_on_scratch_area_body_entered"]

@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var next_level: String
 @export var pause_panel: Control
 @export var continue_panel: Control
 @export var remainign_cont_label: Control
@@ -38,6 +39,11 @@ func _ready() -> void:
 	continue_panel.hide()
 	boss_health_panel.hide()
 	EventBus.boss_health_changed.connect(_on_boss_health_changed)
+	points_label.text=str("[color=orange_red]Points:[/color] ", score)
+	life_label.text=str("[color=red]Lifes:[/color] ", life)
+	spells_label.text=str("[color=green]Bombs:[/color] ", bombs)
+	scratch_label.text=str("[color=purple]Scratch:[/color] ", scratch)
+	EventBus.boss_killed.connect(_on_boss_killed)
 	
 	
 func toggle_pause(status: bool) -> void:
@@ -58,3 +64,7 @@ func _on_boss_health_changed(health: int, max_health:int) -> void:
 	boss_health_panel.show()
 	boss_health_bar.max_value = max_health
 	boss_health_bar.value = health
+	
+	
+func _on_boss_killed() -> void:
+	get_tree().change_scene_to_file(next_level)

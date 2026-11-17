@@ -1,5 +1,7 @@
 extends Node2D
 
+enum State {SPAWNING, WAITING}
+
 signal all_hordes_finished
 
 @export var hordes: Array[HordeData]
@@ -8,12 +10,18 @@ signal all_hordes_finished
 var timer_elapsed: float = 0
 var next_horde: HordeData
 var next_horde_time: float = 0
+var current_state: State = State.WAITING
 
 func _ready() -> void:
 	get_next_horde()
-
+	DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+	
 
 func  _physics_process(delta: float) -> void:
+	if current_state == State.WAITING:
+		return
+	
 	if timer_elapsed > 0 and timer_elapsed >= next_horde_time:
 		spawn_horde()
 		get_next_horde()
@@ -41,3 +49,9 @@ func spawn_horde() -> void:
 		await  get_tree().create_timer(horde.wave_delay).timeout
 	
 	
+func _on_dialogue_started(_dialougue) -> void:
+	current_state = State.WAITING
+	
+
+func _on_dialogue_ended(_dialougue) -> void:
+	current_state = State.SPAWNING

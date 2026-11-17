@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btx00f6saanrg"]
+
+[ext_resource type="AudioStream" uid="uid://b04aqa8q3tkjq" path="res://assets/audio/Mars.wav" id="1_eeapa"]
+[ext_resource type="AudioStream" uid="uid://cp2goxt58nil4" path="res://assets/audio/Map (basic version).wav" id="2_p7a7m"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0yc80"]
+streams_count = 2
+stream_0/stream = ExtResource("1_eeapa")
+stream_1/stream = ExtResource("2_p7a7m")
+
+[node name="Soundtrack" type="AudioStreamPlayer" unique_id=1749766982]
+stream = SubResource("AudioStreamRandomizer_0yc80")
+autoplay = true
+bus = &"Soundtrack"

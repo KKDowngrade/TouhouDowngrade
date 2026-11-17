@@ -23,6 +23,9 @@ func _physics_process(delta: float) -> void:
 
 func _on_entity_damaged() -> void:
 	EventBus.boss_health_changed.emit(entity.health, entity.max_health)
+	if entity.health <= 0:
+		print("morte")
+		EventBus.boss_killed.emit()
 
 
 func _on_timer_timeout() -> void:

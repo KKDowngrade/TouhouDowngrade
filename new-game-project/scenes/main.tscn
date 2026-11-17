@@ -110,6 +110,7 @@ boss_scene = ExtResource("7_muem4")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label", "game_over_panel")]
 process_mode = 3
 script = ExtResource("8_dp3eg")
+next_level = "res://scenes/main_2.tscn"
 pause_panel = NodePath("ReferenceRect/PausePanel")
 continue_panel = NodePath("ReferenceRect/ContinuePanel")
 remainign_cont_label = NodePath("ReferenceRect/ContinuePanel/RemainingContLabel")
@@ -310,6 +311,13 @@ vertical_alignment = 1
 [node name="GameOverButton" type="Button" parent="HUD/ReferenceRect/GameOverPanel" unique_id=241597505]
 layout_mode = 2
 text = "OK"
+
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=745599183]
+offset_left = 926.0
+offset_top = -4.0
+offset_right = 966.0
+offset_bottom = 728.0
+color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1686451816]
 position = Vector2(480, 360)

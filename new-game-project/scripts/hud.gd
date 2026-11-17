@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var next_level: String
 @export var pause_panel: Control
 @export var continue_panel: Control
 @export var remainign_cont_label: Control
@@ -8,6 +9,7 @@ extends CanvasLayer
 @onready var life_label: RichTextLabel = $VBoxContainer/LifeLabel
 @onready var spells_label: RichTextLabel = $VBoxContainer/SpellsLabel
 @onready var scratch_label: RichTextLabel = $VBoxContainer/ScratchLabel
+
 
 var life: int = 3
 var score: int = 0
@@ -31,6 +33,9 @@ func _ready() -> void:
 	pause_panel.hide()
 	continue_panel.hide()
 	EventBus.player_died.connect(_on_player_died)
+	EventBus.boss_killed.connect(_on_boss_killed)
+	
+	DialogueManager.show_dialogue_balloon(load("res://resource/level01-0010.dialogue"), "start")
 
 
 func _on_pause_button_pressed() -> void:
@@ -74,3 +79,9 @@ func _on_game_over_button_pressed() -> void:
 	await  get_tree().physics_frame
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/ranking_screen.tscn")
+	
+	
+func _on_boss_killed() -> void:
+	DialogueManager.show_dialogue_balloon(load("res://resource/level01-0010.dialogue"), "start")
+	await DialogueManager.dialogue_ended
+	#get_tree().change_scene_to_file(next_level)

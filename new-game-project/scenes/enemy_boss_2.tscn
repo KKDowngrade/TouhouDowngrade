@@ -29,6 +29,8 @@ rotation = 2.616797
 rotates = false
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D" unique_id=209769705]
+collision_layer = 4
+collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D" unique_id=1743659918]
 shape = SubResource("CircleShape2D_rxva8")
