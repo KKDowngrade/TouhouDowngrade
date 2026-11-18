@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=18
+type="Resource"
+uid="uid://dkmaxfibuch22"
+path="res://.godot/imported/level02-0010.dialogue-65a6df0ed15a9cacd6bab58588bca99b.tres"
+
+[deps]
+
+source_file="res://resource/level02-0010.dialogue"
+dest_files=["res://.godot/imported/level02-0010.dialogue-65a6df0ed15a9cacd6bab58588bca99b.tres"]
+
+[params]
+
+defaults=true

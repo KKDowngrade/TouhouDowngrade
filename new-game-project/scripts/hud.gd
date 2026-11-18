@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var life_label: RichTextLabel = $VBoxContainer/LifeLabel
 @onready var spells_label: RichTextLabel = $VBoxContainer/SpellsLabel
 @onready var scratch_label: RichTextLabel = $VBoxContainer/ScratchLabel
+var boss_killed: bool = false
 
 
 var life: int = 3
@@ -82,6 +83,8 @@ func _on_game_over_button_pressed() -> void:
 	
 	
 func _on_boss_killed() -> void:
-	DialogueManager.show_dialogue_balloon(load("res://resource/level01-0010.dialogue"), "start")
-	await DialogueManager.dialogue_ended
-	#get_tree().change_scene_to_file(next_level)
+	if boss_killed == false:
+		boss_killed = true
+		DialogueManager.show_dialogue_balloon(load("res://resource/level01-0020.dialogue"), "start")
+		await DialogueManager.dialogue_ended
+		get_tree().change_scene_to_file(next_level)

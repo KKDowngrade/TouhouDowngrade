@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7amaj6qmm1h2"]
 
 [ext_resource type="Script" uid="uid://cw5ast8objepa" path="res://scripts/bomb_effect.gd" id="1_8u35g"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_hbck4"]
+[ext_resource type="Texture2D" uid="uid://bmiibggata3tw" path="res://assets/bomb_effect.png" id="2_8u35g"]
 
 [sub_resource type="Curve" id="Curve_8u35g"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -27,7 +27,7 @@ script = ExtResource("1_8u35g")
 [node name="BombParticles" type="GPUParticles2D" parent="." unique_id=1795067882]
 emitting = false
 amount = 100
-texture = ExtResource("1_hbck4")
+texture = ExtResource("2_8u35g")
 one_shot = true
 explosiveness = 0.85
 randomness = 1.0

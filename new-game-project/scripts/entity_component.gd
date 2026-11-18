@@ -12,11 +12,10 @@ signal entity_damaged
 @export var drop_types: Array[Drop.DropType]
 @export var enemy_type: int = 0
 @export var max_health: int = 1
+@export var scratch: int = 10
 
 
 var tween: Tween = create_tween()
-
-
 
 
 

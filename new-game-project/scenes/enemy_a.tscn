@@ -46,7 +46,7 @@ _data = {
 &"enemy_a_animation": SubResource("Animation_1fxpe")
 }
 
-[node name="enemy_a" type="Area2D" unique_id=1527829380]
+[node name="enemy_a" type="Area2D" unique_id=1527829380 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 66
 script = ExtResource("1_yj7xe")
@@ -61,7 +61,7 @@ hframes = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=119749066]
 libraries/ = SubResource("AnimationLibrary_mf3yb")
 
-[node name="Entity" type="Node" parent="." unique_id=844777009 node_paths=PackedStringArray("entity_owner")]
+[node name="Entity" type="Node" parent="." unique_id=844777009 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
 script = ExtResource("3_pid25")
 entity_owner = NodePath("..")
 speed = 100.0

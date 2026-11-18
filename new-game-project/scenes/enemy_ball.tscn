@@ -48,6 +48,7 @@ position = Vector2(14, 0)
 [node name="Entity" type="Node" parent="." unique_id=1934546973 node_paths=PackedStringArray("entity_owner")]
 script = ExtResource("3_5aiud")
 entity_owner = NodePath("..")
+health = 10
 speed = 100.0
 drop = ExtResource("4_5ytt8")
 drop_types = Array[int]([0, 1])

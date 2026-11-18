@@ -252,13 +252,7 @@ func shot() ->  void:
 		add_sibling(bullet)
 
 
-func _on_scratch_area_body_entered(body: Node2D) -> void:
-	print("body")
-	scratch += 10
-	score += 50
-	EventBus.scored.emit(score)
-	EventBus.scratched.emit(scratch)
-	
+
 	
 func _taken_damage() -> void:
 	if invencible:
@@ -317,3 +311,12 @@ func _on_run_continued() -> void:
 func _on_player_search(node: Node) -> void:
 	if "player1" in node:
 		node.player1 = self
+
+
+func _on_scratch_area_area_entered(area: Area2D) -> void:
+	print(area)
+	scratch += 10
+	score += 50
+	EventBus.scored.emit(score)
+	EventBus.scratched.emit(scratch)
+	

@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="3_ywx0f"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="4_e1hce"]
 [ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="5_hmh72"]
-[ext_resource type="Script" uid="uid://det0afyh1y4k0" path="res://scripts/enemy_spawner2.gd" id="7_r4383"]
+[ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="7_ugyvg"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="8_1k1ng"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="10_k6ibc"]
 [ext_resource type="PackedScene" uid="uid://cgxu3k6l4i7a6" path="res://scenes/enemy_a.tscn" id="10_ugyvg"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="12_1k1ng"]
 [ext_resource type="PackedScene" uid="uid://8soo1u6urp05" path="res://scenes/enemy_su.tscn" id="12_wwjik"]
 [ext_resource type="Script" uid="uid://cdbl515c4voad" path="res://scripts/boss_sawner2.gd" id="13_k6ibc"]
+[ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="14_k6ibc"]
 [ext_resource type="PackedScene" uid="uid://crjkr4e6qpy3l" path="res://scenes/enemy_boss_2.tscn" id="14_wwjik"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rxva8"]
@@ -28,45 +29,58 @@ bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1k1ng"]
 bg_color = Color(0, 0, 1, 1)
 
-[sub_resource type="Resource" id="Resource_ylgb6"]
+[sub_resource type="Resource" id="Resource_adixt"]
 script = ExtResource("10_k6ibc")
 enemy_scene = ExtResource("10_ugyvg")
 metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 
-[sub_resource type="Resource" id="Resource_sc3vj"]
+[sub_resource type="Resource" id="Resource_g0wqk"]
 script = ExtResource("8_1k1ng")
-enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_ylgb6")])
-spanw_points = Array[int]([2, 3, 8, 9])
-spawn_per_wave = 4
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_adixt")])
+spanw_points = Array[int]([0, 1, 2, 3, 8, 9, 10, 11])
+spawn_per_wave = 8
 wave_delay = 1.0
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
-[sub_resource type="Resource" id="Resource_arqo0"]
+[sub_resource type="Resource" id="Resource_c4w8v"]
 script = ExtResource("10_k6ibc")
 enemy_scene = ExtResource("11_xb34a")
 metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 
-[sub_resource type="Resource" id="Resource_rxva8"]
+[sub_resource type="Resource" id="Resource_5uy6h"]
 script = ExtResource("8_1k1ng")
 time = 4.0
 amount = 1
-enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_arqo0")])
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_c4w8v")])
 spanw_points = Array[int]([5, 6])
 spawn_per_wave = 2
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
-[sub_resource type="Resource" id="Resource_c5wha"]
+[sub_resource type="Resource" id="Resource_6fig5"]
 script = ExtResource("10_k6ibc")
 enemy_scene = ExtResource("12_wwjik")
 metadata/_custom_type_script = "uid://d17nc5pj78gqw"
 
-[sub_resource type="Resource" id="Resource_5bdkl"]
+[sub_resource type="Resource" id="Resource_wwjik"]
 script = ExtResource("8_1k1ng")
-time = 6.0
-enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_c5wha")])
-spanw_points = Array[int]([2, 3, 8, 9])
+time = 8.0
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_6fig5")])
+spanw_points = Array[int]([0, 1, 10, 11])
 spawn_per_wave = 4
 wave_delay = 1.0
+metadata/_custom_type_script = "uid://cpjvnqmaqu045"
+
+[sub_resource type="Resource" id="Resource_kieih"]
+script = ExtResource("10_k6ibc")
+enemy_scene = ExtResource("11_xb34a")
+metadata/_custom_type_script = "uid://d17nc5pj78gqw"
+
+[sub_resource type="Resource" id="Resource_dhr3r"]
+script = ExtResource("8_1k1ng")
+amount = 1
+enemies = Array[ExtResource("10_k6ibc")]([SubResource("Resource_kieih")])
+spanw_points = Array[int]([3, 8])
+spawn_per_wave = 2
 metadata/_custom_type_script = "uid://cpjvnqmaqu045"
 
 [node name="main2" type="Node2D" unique_id=726778003]
@@ -294,8 +308,8 @@ offset_bottom = 728.0
 color = Color(0, 0, 0, 1)
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1672995908]
-script = ExtResource("7_r4383")
-hordes = Array[ExtResource("8_1k1ng")]([SubResource("Resource_sc3vj"), SubResource("Resource_rxva8"), SubResource("Resource_5bdkl")])
+script = ExtResource("7_ugyvg")
+hordes = Array[ExtResource("8_1k1ng")]([SubResource("Resource_g0wqk"), SubResource("Resource_5uy6h"), SubResource("Resource_wwjik"), SubResource("Resource_dhr3r")])
 
 [node name="SpawnPoint1" type="Marker2D" parent="EnemySpawner" unique_id=153682302]
 position = Vector2(75, 6)
@@ -340,6 +354,8 @@ position = Vector2(332, 630)
 position = Vector2(349, 78)
 script = ExtResource("13_k6ibc")
 boss_scene = ExtResource("14_wwjik")
+
+[node name="BombEffect" parent="." unique_id=1976739912 instance=ExtResource("14_k6ibc")]
 
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]

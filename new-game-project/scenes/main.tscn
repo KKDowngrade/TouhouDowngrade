@@ -63,6 +63,7 @@ boss_name_label = NodePath("HUD/ReferenceRect/BossHealthPanel/BossNameLabel")
 boss_health_panel = NodePath("HUD/ReferenceRect/BossHealthPanel")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2053709526]
+modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)
 position = Vector2(334, 368)
 texture = SubResource("ViewportTexture_0yc80")
 

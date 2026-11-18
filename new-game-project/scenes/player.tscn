@@ -61,4 +61,5 @@ bus = &"SoundEffects"
 stream = ExtResource("7_jej6c")
 bus = &"SoundEffects"
 
+[connection signal="area_entered" from="ScratchArea" to="." method="_on_scratch_area_area_entered"]
 [connection signal="body_entered" from="ScratchArea" to="." method="_on_scratch_area_body_entered"]
