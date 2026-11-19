@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_l6cm7"]
 [ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="2_wu84c"]
 [ext_resource type="PackedScene" uid="uid://di51hp7eabv0r" path="res://scenes/menu_background.tscn" id="3_bqqt6"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="5_8ln24"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="6_rtw2f"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rxva8"]
 viewport_path = NodePath("SubViewport")
@@ -79,6 +81,10 @@ layout_mode = 0
 offset_right = 960.0
 offset_bottom = 720.0
 texture = SubResource("ViewportTexture_rxva8")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2104271429]
+
+[node name="MenuBackground" parent="SubViewport" unique_id=1810424623 instance=ExtResource("3_bqqt6")]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1467705070]
 visible = false
@@ -185,9 +191,14 @@ text = "CREATED"
 fit_content = true
 autowrap_mode = 0
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=2104271429]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1831325765]
 
-[node name="MenuBackground" parent="SubViewport" unique_id=1810424623 instance=ExtResource("3_bqqt6")]
+[node name="ScreenShader" parent="CanvasLayer" unique_id=637614717 instance=ExtResource("5_8ln24")]
+visible = false
+
+[node name="ShowOnReady" type="Node" parent="CanvasLayer/ScreenShader" unique_id=711762079]
+script = ExtResource("6_rtw2f")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]

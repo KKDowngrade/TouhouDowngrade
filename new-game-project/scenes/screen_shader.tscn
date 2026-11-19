@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dq6c5qyiqvkob"]
+
+[ext_resource type="Shader" uid="uid://b7v872tk72ua8" path="res://scripts/crt.gdshader" id="1_stxgc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjyqr"]
+shader = ExtResource("1_stxgc")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.72300003108262
+shader_parameter/distort_intensity = 0.010000000475
+shader_parameter/noise_opacity = 0.1030000048925
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.01000004797499998
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.5050000239875
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q8dog"]
+
+[node name="ScreenShader" type="TextureRect" unique_id=637614717]
+z_index = 10
+material = SubResource("ShaderMaterial_hjyqr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("PlaceholderTexture2D_q8dog")

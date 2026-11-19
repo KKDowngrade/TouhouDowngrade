@@ -2,6 +2,19 @@
 
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_38dwe"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38dwe"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
 [resource]
 default_font = ExtResource("1_38dwe")
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/styles/pressed = SubResource("StyleBoxFlat_38dwe")
 RichTextLabel/font_sizes/bold_font_size = 25

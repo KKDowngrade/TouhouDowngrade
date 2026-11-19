@@ -22,12 +22,9 @@ LIFES,Lifes,Vidas
 BOMBS,Bombs,Bombas
 SCREENMODE,Screen Mode,Modo de Tela
 FULLSCREEN,Fullscreen,Tela Cheia
-WINDOWED,Windowed,Janela]
+WINDOWED,Windowed,Janela
 BACK,Back,Voltar
-CONTROLSS,[b]Controls:[/b],[b]Controles:[/b]
-WASD,- WASD or Arrow Keys to move,- WASD ou setinhas para se mover
-Z,- Z to shoot,- Z para atirar
-X,- X to use a bomb,- X para usar bombas
+CONTROLSS,[b]Controls:[/b][br]- WASD or Arrow Keys to move[br]- Z to shoot[br]- X to use a bomb,[b]Controles:[/b][br]- WASD ou setinhas para se mover[br]- Z para atirar[br]- X para usar bombas
 dgd7sntkm0i4b_01be7b,Whats happening?,O que está acontecendo?
 dgd7sntkm0i4b_c6f731,Why have so much spaceships here?, Por que tem tantas naves aqui?
 dgd7sntkm0i4b_1d8cb7,"Well, let´s just destroy them all","Bem, vamos apenas destruir todas."

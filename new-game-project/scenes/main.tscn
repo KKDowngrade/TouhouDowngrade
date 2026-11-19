@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="5_tbgi4"]
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://cp78o3yguwkcq" path="res://scripts/boss_spawner.gd" id="6_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="7_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://cd2gys781u43v" path="res://scenes/enemy_boss1.tscn" id="7_muem4"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="8_0ld40"]
 [ext_resource type="Script" uid="uid://clvi86eqro3gl" path="res://scripts/hud.gd" id="8_dp3eg"]
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="10_trceg"]
@@ -18,15 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://b7amaj6qmm1h2" path="res://scenes/bomb_effect.tscn" id="15_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://dd7d0byjxos08" path="res://scenes/enemy_shooter.tscn" id="15_muem4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0yc80"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
-size = Vector2(593.5, 33)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_arqo0"]
-size = Vector2(56, 728)
-
 [sub_resource type="Theme" id="Theme_tipki"]
 default_font = ExtResource("5_tefeu")
 
@@ -35,6 +28,15 @@ bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6xl0"]
 bg_color = Color(0, 0, 1, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0yc80"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxva8"]
+size = Vector2(593.5, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arqo0"]
+size = Vector2(56, 728)
 
 [sub_resource type="Resource" id="Resource_rxva8"]
 script = ExtResource("12_jkv2x")
@@ -62,54 +64,9 @@ boss_health_bar = NodePath("HUD/ReferenceRect/BossHealthPanel/BossHealthBar")
 boss_name_label = NodePath("HUD/ReferenceRect/BossHealthPanel/BossNameLabel")
 boss_health_panel = NodePath("HUD/ReferenceRect/BossHealthPanel")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2053709526]
-modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)
-position = Vector2(334, 368)
-texture = SubResource("ViewportTexture_0yc80")
-
-[node name="SubViewport" type="SubViewport" parent="." unique_id=59978842]
-size = Vector2i(600, 800)
-
-[node name="WorldBackground" parent="SubViewport" unique_id=704459088 instance=ExtResource("2_dp3eg")]
-
-[node name="Player" parent="." unique_id=1215641198 instance=ExtResource("2_muem4")]
-position = Vector2(332, 630)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
-position = Vector2(-4, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=8156311]
-position = Vector2(333.5, 6.5)
-shape = SubResource("RectangleShape2D_rxva8")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=549590036]
-position = Vector2(1, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1986371818]
-position = Vector2(327.75, 712)
-shape = SubResource("RectangleShape2D_rxva8")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1539945488]
-position = Vector2(-3, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1973622544]
-position = Vector2(18, 354)
-shape = SubResource("RectangleShape2D_arqo0")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1931394543]
-position = Vector2(636, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1570977951]
-position = Vector2(18, 354)
-shape = SubResource("RectangleShape2D_arqo0")
-
-[node name="BossSpawner" type="Marker2D" parent="." unique_id=1363968288]
-position = Vector2(329, 121)
-script = ExtResource("6_jbj1t")
-boss_scene = ExtResource("7_muem4")
-
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1131372283 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label", "game_over_panel")]
 process_mode = 3
+layer = 10
 script = ExtResource("8_dp3eg")
 next_level = "res://scenes/main_2.tscn"
 pause_panel = NodePath("ReferenceRect/PausePanel")
@@ -169,7 +126,7 @@ layout_mode = 2
 [node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=1282069486]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=blue]POWER"
+text = "POWER"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -319,6 +276,68 @@ offset_top = -4.0
 offset_right = 966.0
 offset_bottom = 728.0
 color = Color(0, 0, 0, 1)
+
+[node name="ScreenShader" parent="HUD" unique_id=637614717 instance=ExtResource("7_dp3eg")]
+visible = false
+
+[node name="ShowOnReady" type="Node" parent="HUD/ScreenShader" unique_id=216000836]
+script = ExtResource("8_0ld40")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
+
+[node name="BlackFade" type="ColorRect" parent="HUD" unique_id=1247588908]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2053709526]
+modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)
+position = Vector2(334, 368)
+texture = SubResource("ViewportTexture_0yc80")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=59978842]
+size = Vector2i(600, 800)
+
+[node name="WorldBackground" parent="SubViewport" unique_id=704459088 instance=ExtResource("2_dp3eg")]
+
+[node name="Player" parent="." unique_id=1215641198 instance=ExtResource("2_muem4")]
+position = Vector2(332, 630)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=82729901]
+position = Vector2(-4, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=8156311]
+position = Vector2(333.5, 6.5)
+shape = SubResource("RectangleShape2D_rxva8")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=549590036]
+position = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1986371818]
+position = Vector2(327.75, 712)
+shape = SubResource("RectangleShape2D_rxva8")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=1539945488]
+position = Vector2(-3, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1973622544]
+position = Vector2(18, 354)
+shape = SubResource("RectangleShape2D_arqo0")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="." unique_id=1931394543]
+position = Vector2(636, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4" unique_id=1570977951]
+position = Vector2(18, 354)
+shape = SubResource("RectangleShape2D_arqo0")
+
+[node name="BossSpawner" type="Marker2D" parent="." unique_id=1363968288]
+position = Vector2(329, 121)
+script = ExtResource("6_jbj1t")
+boss_scene = ExtResource("7_muem4")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1686451816]
 position = Vector2(480, 360)

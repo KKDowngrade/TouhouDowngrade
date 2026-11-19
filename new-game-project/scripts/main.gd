@@ -7,6 +7,7 @@ extends Node2D
 @export var boss_health_bar: ProgressBar  
 @export var boss_name_label: RichTextLabel 
 @export var boss_health_panel: HBoxContainer 
+@onready var black_fade: ColorRect = $HUD/BlackFade
 
 
 var life: int = 3
@@ -37,6 +38,7 @@ func _ready() -> void:
 	EventBus.bomb_used.connect(_bomb_used)
 	EventBus.boss_health_changed.connect(_on_boss_health_changed)
 	EventBus.player_died.connect(_on_player_died)
+	fade_in()
 	
 
 func _power_upated(amount: int) -> void:
@@ -48,22 +50,22 @@ func _power_upated(amount: int) -> void:
 func _score_updated(points: int) -> void:
 	print("scored")
 	score = points
-	points_label.text=str("[color=orange_red]Points:[/color] ", score)
+	points_label.text= tr("POINTS_LABEL") % power
 	GameManger.game_data.score = score
 	
 func _scratch_updated(scratchs: int) -> void:
 	scratch += scratchs
-	scratch_label.text=str("[color=purple]Scratch:[/color] ", scratch)
+	scratch_label.text=tr("SCRATCH_LABEL") % scratch
 	
 	
 func _life_lost(losted_lifes: int) -> void:
 	life = losted_lifes
-	life_label.text=str("[color=red]Lifes:[/color] ", life)
+	life_label.text=tr("LIFE_LABEL") % life
 	
 	
 func _bomb_used(bombs_used: int) -> void:
 	bombs = bombs_used
-	spells_label.text=str("[color=green]Bombs:[/color] ", bombs)
+	spells_label.text=tr("BOMB_LABEL") % bombs
 
 
 func _on_boss_health_changed(health: int, max_health:int) -> void:
@@ -74,3 +76,13 @@ func _on_boss_health_changed(health: int, max_health:int) -> void:
 func _on_player_died() -> void:
 	GameManger.game_data.score = score
 	
+	
+func fade_in() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(black_fade, "modulate:a", 0.0, 2)
+	
+
+func fade_out() -> void:
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(black_fade, "modulate:a", 1.0, 2)

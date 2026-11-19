@@ -6,8 +6,10 @@
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="3_ywx0f"]
 [ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="4_e1hce"]
 [ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="5_hmh72"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="7_kieih"]
 [ext_resource type="Script" uid="uid://bv5y70iskuvtd" path="res://scripts/enemy_spawner.gd" id="7_ugyvg"]
 [ext_resource type="Script" uid="uid://cpjvnqmaqu045" path="res://scripts/horde_data.gd" id="8_1k1ng"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="8_dhr3r"]
 [ext_resource type="Script" uid="uid://d17nc5pj78gqw" path="res://scripts/enemy_data.gd" id="10_k6ibc"]
 [ext_resource type="PackedScene" uid="uid://cgxu3k6l4i7a6" path="res://scenes/enemy_a.tscn" id="10_ugyvg"]
 [ext_resource type="PackedScene" uid="uid://1c5l4xu22eel" path="res://scenes/enemy_ball.tscn" id="11_xb34a"]
@@ -97,6 +99,7 @@ size = Vector2i(600, 800)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1069882516 node_paths=PackedStringArray("pause_panel", "continue_panel", "remainign_cont_label", "game_over_panel")]
 process_mode = 3
+layer = 100
 script = ExtResource("1_43ty5")
 next_level = "res://scenes/ranking_screen.tscn"
 pause_panel = NodePath("ReferenceRect/PausePanel")
@@ -306,6 +309,14 @@ offset_top = -4.0
 offset_right = 966.0
 offset_bottom = 728.0
 color = Color(0, 0, 0, 1)
+
+[node name="ScreenShader" parent="HUD" unique_id=637614717 instance=ExtResource("7_kieih")]
+visible = false
+z_index = 100
+
+[node name="ShowOnReady" type="Node" parent="HUD/ScreenShader" unique_id=1240926670]
+script = ExtResource("8_dhr3r")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=1672995908]
 script = ExtResource("7_ugyvg")

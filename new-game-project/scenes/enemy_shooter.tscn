@@ -47,7 +47,7 @@ _data = {
 &"shooter_animation": SubResource("Animation_fkp5b")
 }
 
-[node name="EnemyShooter" type="Area2D" unique_id=1396498859]
+[node name="EnemyShooter" type="Area2D" unique_id=1396498859 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 66
 script = ExtResource("1_p4l84")
@@ -71,7 +71,7 @@ position = Vector2(-10, 13)
 [node name="Cannon2" type="Marker2D" parent="." unique_id=1314861091]
 position = Vector2(9, 13)
 
-[node name="Entity" type="Node" parent="." unique_id=454550543 node_paths=PackedStringArray("entity_owner")]
+[node name="Entity" type="Node" parent="." unique_id=454550543 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
 script = ExtResource("3_t4tug")
 entity_owner = NodePath("..")
 speed = 100.0

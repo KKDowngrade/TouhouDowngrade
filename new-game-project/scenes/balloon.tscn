@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bqxfvs8st46sp" path="res://scenes/balloon.gd" id="1_36de5"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/nodes/dialogue_label/dialogue_label.tscn" id="2_a8ve6"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="2_u045a"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/nodes/responses_menu/dialogue_responses_menu.gd" id="3_72ixx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
@@ -64,6 +65,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
+default_font = ExtResource("2_u045a")
 default_font_size = 20
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
@@ -112,7 +114,8 @@ _data = {
 }
 
 [node name="ExampleBalloon" type="CanvasLayer" unique_id=38036521]
-layer = 100
+layer = 5
+follow_viewport_enabled = true
 script = ExtResource("1_36de5")
 
 [node name="Balloon" type="Control" parent="." unique_id=154399927]

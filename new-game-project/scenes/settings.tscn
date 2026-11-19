@@ -2,9 +2,18 @@
 
 [ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="1_r6d6q"]
 [ext_resource type="Script" uid="uid://biuuhi2ofmq8y" path="res://settings.gd" id="2_6wm04"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="3_6wm04"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="4_f4mfi"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="5_es4n0"]
 
 [sub_resource type="Theme" id="Theme_rxva8"]
 default_font = ExtResource("1_r6d6q")
+
+[sub_resource type="Theme" id="Theme_r6d6q"]
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_muem4"]
 
 [node name="Settings" type="Control" unique_id=1180666073]
 layout_mode = 3
@@ -87,8 +96,7 @@ layout_mode = 2
 [node name="ScreenLabel" type="RichTextLabel" parent="VBoxContainer/ScreenContainer" unique_id=836552062]
 layout_mode = 2
 bbcode_enabled = true
-text = "SCREENMODE
-"
+text = "SCREENMODE"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -100,6 +108,7 @@ text = "BUG"
 
 [node name="LanguageContainter" type="HBoxContainer" parent="VBoxContainer" unique_id=1587470814]
 layout_mode = 2
+theme = SubResource("Theme_r6d6q")
 
 [node name="LanguageLabel" type="RichTextLabel" parent="VBoxContainer/LanguageContainter" unique_id=99717628]
 layout_mode = 2
@@ -111,15 +120,32 @@ vertical_alignment = 1
 
 [node name="English" type="Button" parent="VBoxContainer/LanguageContainter" unique_id=1826701728]
 layout_mode = 2
+theme = ExtResource("3_6wm04")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_muem4")
 text = "English"
 
 [node name="Portuguese" type="Button" parent="VBoxContainer/LanguageContainter" unique_id=1011887243]
 layout_mode = 2
+theme = ExtResource("3_6wm04")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_muem4")
 text = "Português"
 
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=907495767]
 layout_mode = 2
 text = "BACK"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=254196752]
+
+[node name="ScreenShader" parent="CanvasLayer" unique_id=637614717 instance=ExtResource("4_f4mfi")]
+visible = false
+z_index = 100
+z_as_relative = false
+
+[node name="ShowOnReady" type="Node" parent="CanvasLayer/ScreenShader" unique_id=196765979]
+script = ExtResource("5_es4n0")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [connection signal="value_changed" from="VBoxContainer/LifeContainer/LifeBox" to="." method="_on_life_box_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BombsContainer/BombsBox" to="." method="_on_bombs_box_value_changed"]

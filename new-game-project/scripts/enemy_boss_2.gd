@@ -3,11 +3,11 @@ extends Node2D
 @export var entity: Entity
 @export var bullet_scene: PackedScene
 @export var path_follow: PathFollow2D
-@export var bullet_count: int = 8
 @export var bullet_scene2: PackedScene
 @onready var cannon_1: Marker2D = $Path2D/PathFollow2D/Area2D/Cannon1
 @onready var cannon_2: Marker2D = $Path2D/PathFollow2D/Area2D/Cannon2
 @onready var marker_2d: Marker2D = $Path2D/PathFollow2D/Area2D/Marker2D
+@onready var area_2d: Area2D = $Path2D/PathFollow2D/Area2D
 
 
 func _ready() -> void:
@@ -38,10 +38,17 @@ func _on_entity_damaged() -> void:
 
 
 func _on_timer_2_timeout() -> void:
-	for i in bullet_count:
-		print("shooting")
-		var angle := TAU * 1 / bullet_count
-		var bullets := bullet_scene2.instantiate()
-		bullets.direction = Vector2.RIGHT.rotated(angle)
-		bullets.global_position = marker_2d.global_position
-		add_sibling(bullets)
+	attack_circular(10, 100, 0.0)
+	attack_circular(10, 120, 0.1)
+	attack_circular(10, 140, 0.2)
+	
+	
+func attack_circular(amount: int, radius: float, rotation_offset: float) -> void:
+	var direction: Vector2 = Vector2.UP.rotated(rotation_offset)
+	var rotation_amount: float = TAU / amount
+	for i in amount:
+		var bullet0 = bullet_scene2.instantiate()
+		add_sibling(bullet0)
+		bullet0.global_position = area_2d.global_position
+		bullet0.global_position += (direction * radius).rotated(rotation_amount * i)
+		bullet0.direction = (direction).rotated(rotation_amount * i)
