@@ -18,7 +18,7 @@ var score: int = 0
 var bombs: int = 3
 var max_life: int = 7
 var max_bombs: int = 7
-var power: int = 0
+var power: int = GameManger.power
 var continues: int = 5
 var scratch: int = 0
 
@@ -35,15 +35,16 @@ func _ready() -> void:
 	score = GameManger.score
 	scratch = GameManger.scratch
 	bombs = GameManger.bombs
+	power = GameManger.power
 	game_over_panel.hide()
 	pause_panel.hide()
 	continue_panel.hide()
 	boss_health_panel.hide()
 	EventBus.boss_health_changed.connect(_on_boss_health_changed)
-	points_label.text=str("[color=orange_red]Points:[/color] ", score)
-	life_label.text=str("[color=red]Lifes:[/color] ", life)
-	spells_label.text=str("[color=green]Bombs:[/color] ", bombs)
-	scratch_label.text=str("[color=purple]Scratch:[/color] ", scratch)
+	points_label.text= tr("POINTS_LABEL") % power
+	life_label.text=tr("LIFE_LABEL") % life
+	spells_label.text=tr("BOMB_LABEL") % bombs
+	scratch_label.text=tr("SCRATCH_LABEL") % scratch
 	EventBus.boss_killed.connect(_on_boss_killed)
 	DialogueManager.show_dialogue_balloon(load("res://resource/level02-0010.dialogue"), "start")
 	EventBus.power_uped.connect(_on_power_uped)
@@ -51,7 +52,8 @@ func _ready() -> void:
 	EventBus.bomb_used.connect(_bomb_used)
 	EventBus.life_lost.connect(_life_lost)
 	EventBus.scratched.connect(_scratch_updated)
-	
+	power_barr.value = power
+	print(GameManger.power)
 	
 func toggle_pause(status: bool) -> void:
 	pause_panel.visible = status
@@ -61,7 +63,7 @@ func toggle_pause(status: bool) -> void:
 func _on_player_died() -> void:
 	if continues > 0:
 		get_tree().paused = true
-		remainign_cont_label.text=str("Remaining continues: ", continues)
+		remainign_cont_label.text=tr("CONTINUES_REMAINING") % continues
 		continue_panel.show()
 	else: 
 		game_over_panel.show()
@@ -80,7 +82,7 @@ func _on_boss_killed() -> void:
 func _on_power_uped(amount: int) -> void:
 	power_barr.value = amount
 	power = amount
-	GameManger.power = amount
+	
 	
 
 func _on_scored(points: int) -> void:

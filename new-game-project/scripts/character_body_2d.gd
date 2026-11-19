@@ -11,7 +11,7 @@ var current_speed: float = 0
 var shot_cooldown: float = 0.0
 @onready var cannon: Marker2D = $Cannon
 @onready var sprite_2d: Sprite2D = $Sprite2D
-var power_amount: int = 0
+var power_amount: int = GameManger.power
 var power_level: int = 0
 var power_amount_max: int = 1000
 var power_level_max: int = 10
@@ -35,9 +35,12 @@ func _ready() -> void:
 	score = GameManger.score
 	power_amount = GameManger.power
 	EventBus.drop_collected.connect(_on_drop_collected)
-	power_level_up()
 	EventBus.run_continued.connect(_on_run_continued)
 	EventBus.player_search.connect(_on_player_search)
+	print(power_amount)
+	check_power_level()
+	power_level_up()
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Spell"):

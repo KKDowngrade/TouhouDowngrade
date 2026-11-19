@@ -26,10 +26,10 @@ func _ready() -> void:
 	boss_health_panel.hide()
 	life = GameManger.life
 	bombs = GameManger.bombs
-	points_label.text=str("[color=orange_red]Points:[/color] ", score)
-	life_label.text=str("[color=red]Lifes:[/color] ", life)
-	spells_label.text=str("[color=green]Bombs:[/color] ", bombs)
-	scratch_label.text=str("[color=purple]Scratch:[/color] ", scratch)
+	points_label.text= tr("POINTS_LABEL") % power
+	life_label.text=tr("LIFE_LABEL") % life
+	spells_label.text=tr("BOMB_LABEL") % bombs
+	scratch_label.text=tr("SCRATCH_LABEL") % scratch
 	EventBus.power_uped.connect(_power_upated)
 	EventBus.scored.connect(_score_updated)
 	EventBus.scratched.connect(_scratch_updated)
@@ -42,7 +42,7 @@ func _ready() -> void:
 func _power_upated(amount: int) -> void:
 	power_barr.value = amount
 	power = amount
-	GameManger.power = amount
+
 	
 	
 func _score_updated(points: int) -> void:

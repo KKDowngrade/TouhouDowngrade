@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b4h063ihdcdre" path="res://scenes/drop.tscn" id="2_degcn"]
 [ext_resource type="PackedScene" uid="uid://bm3bupqobbc1k" path="res://scenes/enemy_shot.tscn" id="2_o1mv0"]
 [ext_resource type="Texture2D" uid="uid://dglogr3vbnts2" path="res://assets/Boss2.png" id="3_o1mv0"]
+[ext_resource type="PackedScene" uid="uid://h1xvd6easkrt" path="res://scenes/enemy_bullet.tscn" id="3_sc3vj"]
 
 [sub_resource type="Curve2D" id="Curve2D_sc3vj"]
 _data = {
@@ -19,6 +20,7 @@ script = ExtResource("1_degcn")
 entity = NodePath("Path2D/PathFollow2D/Area2D/Entity")
 bullet_scene = ExtResource("2_o1mv0")
 path_follow = NodePath("Path2D/PathFollow2D")
+bullet_scene2 = ExtResource("3_sc3vj")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1184062247]
 curve = SubResource("Curve2D_sc3vj")
@@ -58,4 +60,11 @@ position = Vector2(30.153275, -2.1863437)
 [node name="Cannon2" type="Marker2D" parent="Path2D/PathFollow2D/Area2D" unique_id=26598538]
 position = Vector2(-13.61908, -26.372726)
 
+[node name="Timer2" type="Timer" parent="Path2D/PathFollow2D/Area2D" unique_id=471310079]
+wait_time = 2.0
+autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D/Area2D" unique_id=773558705]
+
 [connection signal="timeout" from="Path2D/PathFollow2D/Area2D/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Area2D/Timer2" to="." method="_on_timer_2_timeout"]

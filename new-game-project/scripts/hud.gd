@@ -46,7 +46,7 @@ func _on_pause_button_pressed() -> void:
 func _on_player_died() -> void:
 	if continues > 0:
 		get_tree().paused = true
-		remainign_cont_label.text=str("Remaining continues: ", continues)
+		remainign_cont_label.text=tr("CONTINUES_REMAINING") % continues
 		continue_panel.show()
 	else: 
 		game_over_panel.show()
@@ -85,6 +85,7 @@ func _on_game_over_button_pressed() -> void:
 func _on_boss_killed() -> void:
 	if boss_killed == false:
 		boss_killed = true
+		get_tree().call_group("enemy", "take_damage", 10)
 		DialogueManager.show_dialogue_balloon(load("res://resource/level01-0020.dialogue"), "start")
 		await DialogueManager.dialogue_ended
 		get_tree().change_scene_to_file(next_level)

@@ -15,6 +15,9 @@ func _ready() -> void:
 	EventBus.scored.connect(_on_player_scored)
 	EventBus.game_finished.connect(_on_game_finished)
 	EventBus.life_lost.connect(_life_losted)
+	EventBus.power_uped.connect(_on_power_updated)
+	EventBus.scratched.connect(_on_scratched)
+	
 #	TranslationServer.set_locale("pt")
 
 func _on_player_scored(score_player: int) -> void:
@@ -74,6 +77,10 @@ func _on_score_recorded(player_name: String) -> void:
 	game_data.ranking[game_data.score] = player_name
 	
 	
-
+func _on_power_updated(new_power: int) -> void:
+	print(power)
+	power = new_power
 	
 	
+func _on_scratched(scratchs: int) -> void:
+	scratch += scratchs

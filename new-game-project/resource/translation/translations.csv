@@ -1,3 +1,40 @@
 keys,en,pt
 tr_resume,Resume,Resumir
 PLAY,Play,Jogar
+POINTS_LABEL,[color=orange_red]Points:[/color] %d,[color=orange_red]Pontos:[/color] %d
+LIFE_LABEL,[color=red]Lifes:[/color]  %d,[color=red]Vidas:[/color] %d
+BOMB_LABEL,[color=green]Bombs:[/color] %d,[color=green]Bombas:[/color] %d
+SCRATCH_LABEL,[color=purple]Scratch:[/color] %d,[color=purple]Arranhões:[/color] %d
+POWER,[color=blue]Power: ,[color=blue]Poder: 
+CONTINUE,Continue?,Continuar?
+YES,Yes,Sim
+NO,No,Não
+CONTINUES_REMAINING,Remaining continues: %d,Continues restantes: %d
+PAUSED,Paused,Pausado
+QUIT,Main Menu,Menu Principal
+GAMEOVER,Game Over,Fim de Jogo
+SUBTITLE,[font_size=8][wave](Gorgeous Ostentatious Supe-Technological Ortodoxian Sapient Android),[font_size=8][wave](Garota Ostensiva Super Tecnológica Ortodoxa Sapiente Androide)
+CONTROLS,Controls,Controles
+QUITM,Quit,Sair
+CREATED,Created by KimDowngrade,Criado por KimDowngrade
+SETTINGS,Settings,Configurações
+LIFES,Lifes,Vidas
+BOMBS,Bombs,Bombas
+SCREENMODE,Screen Mode,Modo de Tela
+FULLSCREEN,Fullscreen,Tela Cheia
+WINDOWED,Windowed,Janela]
+BACK,Back,Voltar
+CONTROLSS,[b]Controls:[/b],[b]Controles:[/b]
+WASD,- WASD or Arrow Keys to move,- WASD ou setinhas para se mover
+Z,- Z to shoot,- Z para atirar
+X,- X to use a bomb,- X para usar bombas
+dgd7sntkm0i4b_01be7b,Whats happening?,O que está acontecendo?
+dgd7sntkm0i4b_c6f731,Why have so much spaceships here?, Por que tem tantas naves aqui?
+dgd7sntkm0i4b_1d8cb7,"Well, let´s just destroy them all","Bem, vamos apenas destruir todas."
+c77oyoi6iqeml_e3090a,It looks they all went...,Parece que foram todas...
+c77oyoi6iqeml_f96eea,Wait!,Espera!
+c77oyoi6iqeml_e20396,My systems are detecting a strange presence on Mars!,Meus sistemas está detectando uma presença estranha em Marte!
+c77oyoi6iqeml_303950,Let´s check., Vamos checar.
+fuck,There more spaceships here!,Tem mais naves aqui!
+gta6,Let´s put an end to all of theses as well!,Vamos acabar com essas também!
+LANGUAGE,Language,Idioma

@@ -169,7 +169,7 @@ layout_mode = 2
 [node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=1282069486]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=blue]Power"
+text = "[color=blue]POWER"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -200,7 +200,7 @@ alignment = 1
 [node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1583350694]
 layout_mode = 2
 bbcode_enabled = true
-text = " [color=red]Alpha Two "
+text = " [color=red]Alpha 2"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -229,7 +229,7 @@ theme = ExtResource("12_0ld40")
 [node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=2142439320]
 layout_mode = 2
 bbcode_enabled = true
-text = "Continue?"
+text = "CONTINUE"
 fit_content = true
 autowrap_mode = 0
 
@@ -239,11 +239,11 @@ alignment = 1
 
 [node name="ContinueYes" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1396542763]
 layout_mode = 2
-text = "Yes"
+text = "YES"
 
 [node name="ContinueNo" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=2126801930]
 layout_mode = 2
-text = "No"
+text = "NO"
 
 [node name="RemainingContLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=423761955]
 layout_mode = 2
@@ -272,7 +272,7 @@ theme = ExtResource("12_0ld40")
 [node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=570909164]
 layout_mode = 2
 bbcode_enabled = true
-text = "Paused"
+text = "PAUSED"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -283,7 +283,7 @@ text = "tr_resume"
 
 [node name="QuitButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1643701137]
 layout_mode = 2
-text = "Main Menu"
+text = "QUIT"
 
 [node name="GameOverPanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=1509644314]
 layout_mode = 1
@@ -311,7 +311,7 @@ vertical_alignment = 1
 
 [node name="GameOverButton" type="Button" parent="HUD/ReferenceRect/GameOverPanel" unique_id=241597505]
 layout_mode = 2
-text = "OK"
+text = "Ok"
 
 [node name="ColorRect" type="ColorRect" parent="HUD" unique_id=745599183]
 offset_left = 926.0

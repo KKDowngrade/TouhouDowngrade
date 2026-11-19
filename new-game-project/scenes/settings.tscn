@@ -39,8 +39,7 @@ grow_vertical = 2
 [node name="TittleLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1382368224]
 layout_mode = 2
 bbcode_enabled = true
-text = "Settings
-"
+text = "SETTINGS"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -52,7 +51,7 @@ layout_mode = 2
 [node name="LifeLabel" type="RichTextLabel" parent="VBoxContainer/LifeContainer" unique_id=820376571]
 layout_mode = 2
 bbcode_enabled = true
-text = "Lifes"
+text = "LIFES"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -70,7 +69,7 @@ layout_mode = 2
 [node name="BombsLabel" type="RichTextLabel" parent="VBoxContainer/BombsContainer" unique_id=2099326037]
 layout_mode = 2
 bbcode_enabled = true
-text = "Bombs"
+text = "BOMBS"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -88,7 +87,7 @@ layout_mode = 2
 [node name="ScreenLabel" type="RichTextLabel" parent="VBoxContainer/ScreenContainer" unique_id=836552062]
 layout_mode = 2
 bbcode_enabled = true
-text = "Screen Mode
+text = "SCREENMODE
 "
 fit_content = true
 autowrap_mode = 0
@@ -99,11 +98,32 @@ vertical_alignment = 1
 layout_mode = 2
 text = "BUG"
 
+[node name="LanguageContainter" type="HBoxContainer" parent="VBoxContainer" unique_id=1587470814]
+layout_mode = 2
+
+[node name="LanguageLabel" type="RichTextLabel" parent="VBoxContainer/LanguageContainter" unique_id=99717628]
+layout_mode = 2
+bbcode_enabled = true
+text = "LANGUAGE"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="English" type="Button" parent="VBoxContainer/LanguageContainter" unique_id=1826701728]
+layout_mode = 2
+text = "English"
+
+[node name="Portuguese" type="Button" parent="VBoxContainer/LanguageContainter" unique_id=1011887243]
+layout_mode = 2
+text = "Português"
+
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=907495767]
 layout_mode = 2
-text = "Back to menu"
+text = "BACK"
 
 [connection signal="value_changed" from="VBoxContainer/LifeContainer/LifeBox" to="." method="_on_life_box_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/BombsContainer/BombsBox" to="." method="_on_bombs_box_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ScreenContainer/ScreenButton" to="." method="_on_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LanguageContainter/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="VBoxContainer/LanguageContainter/Portuguese" to="." method="_on_portuguese_pressed"]
 [connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
