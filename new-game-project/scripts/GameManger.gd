@@ -7,6 +7,9 @@ var bombs: int = 3
 var score: int = 0
 var scratch: int = 0
 var power: int = 0
+var life_settings: int = 0
+var bomb_settings: int = 0
+var online_save: bool = true
 @export var game_data: GameData = GameData.new()
 
 

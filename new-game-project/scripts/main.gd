@@ -27,6 +27,9 @@ func _ready() -> void:
 	boss_health_panel.hide()
 	life = GameManger.life
 	bombs = GameManger.bombs
+	GameManger.life_settings = life
+	GameManger.bomb_settings = bombs
+	GameManger.score = score
 	points_label.text= tr("POINTS_LABEL") % power
 	life_label.text=tr("LIFE_LABEL") % life
 	spells_label.text=tr("BOMB_LABEL") % bombs
@@ -50,7 +53,7 @@ func _power_upated(amount: int) -> void:
 func _score_updated(points: int) -> void:
 	print("scored")
 	score = points
-	points_label.text= tr("POINTS_LABEL") % power
+	points_label.text= tr("POINTS_LABEL") % score
 	GameManger.game_data.score = score
 	
 func _scratch_updated(scratchs: int) -> void:

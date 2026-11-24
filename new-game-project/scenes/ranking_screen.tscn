@@ -17,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7uof5")
+leaderboard_internal_name = "RANK"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=487873992]
 layout_mode = 0
