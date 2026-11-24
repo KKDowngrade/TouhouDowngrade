@@ -38,7 +38,7 @@ func _ready() -> void:
 	EventBus.bomb_used.connect(_bomb_used)
 	EventBus.boss_health_changed.connect(_on_boss_health_changed)
 	EventBus.player_died.connect(_on_player_died)
-	fade_in()
+
 	
 
 func _power_upated(amount: int) -> void:
@@ -77,12 +77,3 @@ func _on_player_died() -> void:
 	GameManger.game_data.score = score
 	
 	
-func fade_in() -> void:
-	var tween: Tween = create_tween()
-	tween.tween_property(black_fade, "modulate:a", 0.0, 2)
-	
-
-func fade_out() -> void:
-	
-	var tween: Tween = create_tween()
-	tween.tween_property(black_fade, "modulate:a", 1.0, 2)

@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://b86hmdgdevqet"]
 
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="1_dnv84"]
 [ext_resource type="Script" uid="uid://cxbhe5dgopmm4" path="res://scripts/raking_item.gd" id="1_mqa15"]
 
 [node name="RakingItem" type="HBoxContainer" unique_id=1768061862]
+theme = ExtResource("1_dnv84")
 script = ExtResource("1_mqa15")
 
 [node name="PlayerName" type="LineEdit" parent="." unique_id=636583169]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("1_dnv84")
 placeholder_text = "ASS"
 max_length = 3
 caret_blink = true
@@ -15,6 +18,7 @@ caret_blink = true
 [node name="ScoreLabel" type="Label" parent="." unique_id=537476919]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_dnv84")
 text = "0000000"
 horizontal_alignment = 2
 

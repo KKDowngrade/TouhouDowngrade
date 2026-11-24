@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dqutngbnb2ovm"]
+
+[ext_resource type="Script" uid="uid://cxnxh3xtmve7k" path="res://scripts/world_3.gd" id="1_dd6wx"]
+[ext_resource type="Texture2D" uid="uid://m71ruov3og72" path="res://assets/skybox-space-nebula.png" id="1_lc8dc"]
+[ext_resource type="Texture2D" uid="uid://wptbh0gb2oqs" path="res://assets/images (5).jpg" id="2_dd6wx"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_arqo0"]
+panorama = ExtResource("1_lc8dc")
+
+[sub_resource type="Sky" id="Sky_fkjw6"]
+sky_material = SubResource("PanoramaSkyMaterial_arqo0")
+
+[sub_resource type="Environment" id="Environment_mk7rb"]
+background_mode = 2
+sky = SubResource("Sky_fkjw6")
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_rxva8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0xqg"]
+albedo_texture = ExtResource("2_dd6wx")
+
+[node name="World3" type="Node3D" unique_id=1976270451]
+script = ExtResource("1_dd6wx")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=609393256]
+environment = SubResource("Environment_mk7rb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=252671014]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CameraPivot" type="Marker3D" parent="." unique_id=1340895474]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1108477864]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.563951, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=1108150449]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Marker3D2" unique_id=163511815]
+mesh = SubResource("SphereMesh_rxva8")
+surface_material_override/0 = SubResource("StandardMaterial3D_j0xqg")

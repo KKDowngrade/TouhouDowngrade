@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://ctsmyuhemymjc"]
 
 [ext_resource type="Script" uid="uid://d16y0ggno1ktr" path="res://ranking_screen.gd" id="1_7uof5"]
+[ext_resource type="PackedScene" uid="uid://di51hp7eabv0r" path="res://scenes/menu_background.tscn" id="2_12lrq"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="3_mbls0"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="4_awmk5"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="5_4rq1r"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_awmk5"]
+viewport_path = NodePath("SubViewport")
 
 [node name="RankingScreen" type="Control" unique_id=137528391]
 layout_mode = 3
@@ -10,6 +17,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7uof5")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=487873992]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 720.0
+texture = SubResource("ViewportTexture_awmk5")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=820623939]
+
+[node name="MenuBackground" parent="SubViewport" unique_id=1810424623 instance=ExtResource("2_12lrq")]
 
 [node name="RakingList" type="VBoxContainer" parent="." unique_id=855526376]
 custom_minimum_size = Vector2(400, 0)
@@ -25,6 +42,16 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_mbls0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RakingList" unique_id=2104272634]
+layout_mode = 2
+bbcode_enabled = true
+text = "RECORD"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainMenu" type="Button" parent="." unique_id=1734912036]
 layout_mode = 1
@@ -39,6 +66,16 @@ offset_right = 28.5
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_mbls0")
 text = "MENU"
+
+[node name="ScreenShader" parent="." unique_id=637614717 instance=ExtResource("4_awmk5")]
+visible = false
+z_index = 100
+layout_mode = 1
+
+[node name="ShowOnReady" type="Node" parent="ScreenShader" unique_id=253347748]
+script = ExtResource("5_4rq1r")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [connection signal="pressed" from="MainMenu" to="." method="_on_main_menu_pressed"]

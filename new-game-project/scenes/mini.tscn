@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://k5dpaj8h7bpt"]
+
+[ext_resource type="Script" uid="uid://ip5wdwm4e2ol" path="res://scripts/mini.gd" id="1_g73r8"]
+[ext_resource type="Texture2D" uid="uid://diw1cxt6rant6" path="res://assets/mini.png" id="2_qjg0g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_arqo0"]
+radius = 4.0
+
+[node name="mini" type="Area2D" unique_id=2085164995 groups=["enemy"]]
+script = ExtResource("1_g73r8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1443564579]
+shape = SubResource("CircleShape2D_arqo0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=816728234]
+texture = ExtResource("2_qjg0g")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1585210503]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

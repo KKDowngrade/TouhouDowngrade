@@ -1,0 +1,275 @@
+[gd_scene format=3 uid="uid://b6ntea3n1bv1s"]
+
+[ext_resource type="Script" uid="uid://xttmfp3p60tx" path="res://scripts/hud2.gd" id="1_pn7vl"]
+[ext_resource type="Texture2D" uid="uid://b12fvx0cho1s7" path="res://assets/HUD.png" id="2_ngkwn"]
+[ext_resource type="FontFile" uid="uid://b1ft54yanb1yu" path="res://assets/PressStart2P-Regular.ttf" id="3_8wt8r"]
+[ext_resource type="Script" uid="uid://dlp8niiw1ob1a" path="res://scripts/power_barr.gd" id="4_3m4ub"]
+[ext_resource type="Theme" uid="uid://cj51oapp7phj5" path="res://resource/new_theme.tres" id="5_8ouk6"]
+[ext_resource type="PackedScene" uid="uid://dq6c5qyiqvkob" path="res://scenes/screen_shader.tscn" id="6_0lotj"]
+[ext_resource type="Script" uid="uid://c3xa6iqrlpb52" path="res://scripts/show_on_ready.gd" id="7_s2vyf"]
+[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://scenes/player.tscn" id="8_veabv"]
+[ext_resource type="PackedScene" uid="uid://dqutngbnb2ovm" path="res://scenes/world_3.tscn" id="9_jgpan"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hth8o"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Theme" id="Theme_wfqle"]
+default_font = ExtResource("3_8wt8r")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whpgh"]
+bg_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghnop"]
+bg_color = Color(0, 0, 1, 1)
+
+[node name="Main3" type="Node2D" unique_id=242993715]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2055967532]
+position = Vector2(338, 366)
+texture = SubResource("ViewportTexture_hth8o")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1253833915]
+process_mode = 3
+layer = 10
+script = ExtResource("1_pn7vl")
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=1205711802]
+position = Vector2(479, 359)
+texture = ExtResource("2_ngkwn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" unique_id=1909462310]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -309.0
+offset_top = 90.0
+offset_right = -21.0
+offset_bottom = 195.0
+grow_horizontal = 0
+theme = SubResource("Theme_wfqle")
+
+[node name="PointsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=43456435]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="LifeLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=954537946]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug
+"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="SpellsLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1616476110]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
+[node name="ScratchLabel" type="RichTextLabel" parent="HUD/VBoxContainer" unique_id=1190422273]
+layout_mode = 2
+bbcode_enabled = true
+text = "Bug"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/VBoxContainer" unique_id=669622777]
+layout_mode = 2
+
+[node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=497693920]
+layout_mode = 2
+bbcode_enabled = true
+text = "POWER"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="PowerBarr" type="ProgressBar" parent="HUD/VBoxContainer/HBoxContainer" unique_id=1329076919]
+custom_minimum_size = Vector2(80, 25)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_whpgh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ghnop")
+value = 80.0
+script = ExtResource("4_3m4ub")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="HUD" unique_id=260277217]
+offset_left = 43.0
+offset_top = 22.0
+offset_right = 626.0
+offset_bottom = 695.0
+
+[node name="BossHealthPanel" type="HBoxContainer" parent="HUD/ReferenceRect" unique_id=1318459296]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+theme = ExtResource("5_8ouk6")
+alignment = 1
+
+[node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=355450849]
+layout_mode = 2
+bbcode_enabled = true
+text = " [color=red]Alpha 2"
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1985374079]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+show_percentage = false
+
+[node name="ContinuePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=804180169]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -29.0
+offset_right = 39.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_8ouk6")
+
+[node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=140547544]
+layout_mode = 2
+bbcode_enabled = true
+text = "CONTINUE"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/ReferenceRect/ContinuePanel" unique_id=912998729]
+layout_mode = 2
+alignment = 1
+
+[node name="ContinueYes" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1588542120]
+layout_mode = 2
+text = "YES"
+
+[node name="ContinueNo" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1287231867]
+layout_mode = 2
+text = "NO"
+
+[node name="RemainingContLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1845943792]
+layout_mode = 2
+bbcode_enabled = true
+text = "BUG BUG"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PausePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=1669928460]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_8ouk6")
+
+[node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=496837543]
+layout_mode = 2
+bbcode_enabled = true
+text = "PAUSED"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="PauseButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1929380395]
+layout_mode = 2
+text = "tr_resume"
+
+[node name="QuitButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1046532928]
+layout_mode = 2
+text = "QUIT"
+
+[node name="GameOverPanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=453185653]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -29.0
+offset_right = 44.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_8ouk6")
+
+[node name="GameOverLabel" type="RichTextLabel" parent="HUD/ReferenceRect/GameOverPanel" unique_id=1768621633]
+layout_mode = 2
+bbcode_enabled = true
+text = "GAMEOVER"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverButton" type="Button" parent="HUD/ReferenceRect/GameOverPanel" unique_id=1650492569]
+layout_mode = 2
+text = "Ok"
+
+[node name="ColorRect" type="ColorRect" parent="HUD" unique_id=1202598493]
+offset_left = 926.0
+offset_top = -4.0
+offset_right = 966.0
+offset_bottom = 728.0
+color = Color(0, 0, 0, 1)
+
+[node name="ScreenShader" parent="HUD" unique_id=637614717 instance=ExtResource("6_0lotj")]
+visible = false
+
+[node name="ShowOnReady" type="Node" parent="HUD/ScreenShader" unique_id=1689724288]
+script = ExtResource("7_s2vyf")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
+
+[node name="BlackFade" type="ColorRect" parent="HUD" unique_id=702734559]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ShowOnReady" type="Node" parent="HUD/BlackFade" unique_id=1144481450]
+script = ExtResource("7_s2vyf")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
+
+[node name="Player" parent="." unique_id=1215641198 instance=ExtResource("8_veabv")]
+position = Vector2(325, 633)
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=319020734]
+size = Vector2i(600, 800)
+
+[node name="World3" parent="SubViewport" unique_id=1976270451 instance=ExtResource("9_jgpan")]
+
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="HUD" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/QuitButton" to="HUD" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/GameOverPanel/GameOverButton" to="HUD" method="_on_game_over_button_pressed"]

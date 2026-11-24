@@ -47,7 +47,7 @@ _data = {
 &"enemy_su_animation": SubResource("Animation_6086f")
 }
 
-[node name="EnemySu" type="Area2D" unique_id=902782102 node_paths=PackedStringArray("entityy")]
+[node name="EnemySu" type="Area2D" unique_id=902782102 node_paths=PackedStringArray("entityy") groups=["enemy"]]
 collision_layer = 4
 collision_mask = 66
 script = ExtResource("1_6ji78")
@@ -70,7 +70,7 @@ position = Vector2(0, 32)
 [node name="Timer" type="Timer" parent="." unique_id=1031258140]
 autostart = true
 
-[node name="Entity" type="Node" parent="." unique_id=1613857046 node_paths=PackedStringArray("entity_owner")]
+[node name="Entity" type="Node" parent="." unique_id=1613857046 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
 script = ExtResource("2_6ji78")
 entity_owner = NodePath("..")
 speed = 100.0

@@ -5,11 +5,13 @@ extends CanvasLayer
 @export var continue_panel: Control
 @export var remainign_cont_label: Control
 @export var game_over_panel: Control
+@export var fade_time: int = 2
 @onready var points_label: RichTextLabel = $VBoxContainer/PointsLabel
 @onready var life_label: RichTextLabel = $VBoxContainer/LifeLabel
 @onready var spells_label: RichTextLabel = $VBoxContainer/SpellsLabel
 @onready var scratch_label: RichTextLabel = $VBoxContainer/ScratchLabel
 var boss_killed: bool = false
+@onready var black_fade: ColorRect = $BlackFade
 
 
 var life: int = 3
@@ -35,7 +37,7 @@ func _ready() -> void:
 	continue_panel.hide()
 	EventBus.player_died.connect(_on_player_died)
 	EventBus.boss_killed.connect(_on_boss_killed)
-	
+	fade_in()
 	DialogueManager.show_dialogue_balloon(load("res://resource/level01-0010.dialogue"), "start")
 
 
@@ -88,4 +90,17 @@ func _on_boss_killed() -> void:
 		get_tree().call_group("enemy", "take_damage", 10)
 		DialogueManager.show_dialogue_balloon(load("res://resource/level01-0020.dialogue"), "start")
 		await DialogueManager.dialogue_ended
+		fade_out()
+		await  get_tree().create_timer(fade_time).timeout
 		get_tree().change_scene_to_file(next_level)
+		
+		
+func fade_in() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(black_fade, "modulate:a", 0.0, fade_time)
+	
+
+func fade_out() -> void:
+	
+	var tween: Tween = create_tween()
+	tween.tween_property(black_fade, "modulate:a", 1.0, fade_time)

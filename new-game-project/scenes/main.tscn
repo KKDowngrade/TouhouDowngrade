@@ -285,6 +285,7 @@ script = ExtResource("8_0ld40")
 metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [node name="BlackFade" type="ColorRect" parent="HUD" unique_id=1247588908]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -292,6 +293,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="ShowOnReady" type="Node" parent="HUD/BlackFade" unique_id=402655691]
+script = ExtResource("8_0ld40")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=2053709526]
 modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)

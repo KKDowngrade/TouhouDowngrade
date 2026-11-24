@@ -106,6 +106,8 @@ pause_panel = NodePath("ReferenceRect/PausePanel")
 continue_panel = NodePath("ReferenceRect/ContinuePanel")
 remainign_cont_label = NodePath("ReferenceRect/ContinuePanel/RemainingContLabel")
 game_over_panel = NodePath("ReferenceRect/GameOverPanel")
+firsti_dialogue = "res://resource/level02-0010.dialogue"
+last_dialogue = "res://resource/level02-0020.dialogue"
 
 [node name="Sprite2D" type="Sprite2D" parent="HUD" unique_id=714513042]
 position = Vector2(479, 359)
@@ -159,7 +161,7 @@ layout_mode = 2
 [node name="PowerLabel" type="RichTextLabel" parent="HUD/VBoxContainer/HBoxContainer" unique_id=961319637]
 layout_mode = 2
 bbcode_enabled = true
-text = "[color=blue]Power"
+text = "POWER"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -190,7 +192,7 @@ alignment = 1
 [node name="BossNameLabel" type="RichTextLabel" parent="HUD/ReferenceRect/BossHealthPanel" unique_id=1310530790]
 layout_mode = 2
 bbcode_enabled = true
-text = " [color=red]Omega Three"
+text = " [color=red]Omega 3"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
@@ -202,6 +204,7 @@ size_flags_horizontal = 3
 show_percentage = false
 
 [node name="ContinuePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=225174316]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -219,7 +222,7 @@ theme = ExtResource("5_hmh72")
 [node name="ContinueLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1103186623]
 layout_mode = 2
 bbcode_enabled = true
-text = "Continue?"
+text = "CONTINUE"
 fit_content = true
 autowrap_mode = 0
 
@@ -229,11 +232,11 @@ alignment = 1
 
 [node name="ContinueYes" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=1559308011]
 layout_mode = 2
-text = "Yes"
+text = "YES"
 
 [node name="ContinueNo" type="Button" parent="HUD/ReferenceRect/ContinuePanel/HBoxContainer" unique_id=339337360]
 layout_mode = 2
-text = "No"
+text = "NO"
 
 [node name="RemainingContLabel" type="RichTextLabel" parent="HUD/ReferenceRect/ContinuePanel" unique_id=1964735743]
 layout_mode = 2
@@ -245,6 +248,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PausePanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=1125626654]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -262,7 +266,7 @@ theme = ExtResource("5_hmh72")
 [node name="PauseLabel" type="RichTextLabel" parent="HUD/ReferenceRect/PausePanel" unique_id=274171088]
 layout_mode = 2
 bbcode_enabled = true
-text = "Paused"
+text = "PAUSED"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -273,9 +277,10 @@ text = "tr_resume"
 
 [node name="QuitButton" type="Button" parent="HUD/ReferenceRect/PausePanel" unique_id=1631915894]
 layout_mode = 2
-text = "Main Menu"
+text = "QUIT"
 
 [node name="GameOverPanel" type="VBoxContainer" parent="HUD/ReferenceRect" unique_id=2033533694]
+process_mode = 3
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -315,6 +320,20 @@ visible = false
 z_index = 100
 
 [node name="ShowOnReady" type="Node" parent="HUD/ScreenShader" unique_id=1240926670]
+script = ExtResource("8_dhr3r")
+metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
+
+[node name="BlackFade" type="ColorRect" parent="HUD" unique_id=909273579]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ShowOnReady" type="Node" parent="HUD/BlackFade" unique_id=737164450]
 script = ExtResource("8_dhr3r")
 metadata/_custom_type_script = "uid://c3xa6iqrlpb52"
 
@@ -370,6 +389,7 @@ boss_scene = ExtResource("14_wwjik")
 
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueYes" to="HUD" method="_on_continue_yes_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/ContinuePanel/HBoxContainer/ContinueNo" to="HUD" method="_on_continue_no_pressed"]
+[connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="SubViewport/World2" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/PausePanel/PauseButton" to="HUD" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/PausePanel/QuitButton" to="HUD" method="_on_quit_button_pressed"]
 [connection signal="pressed" from="HUD/ReferenceRect/GameOverPanel/GameOverButton" to="HUD" method="_on_game_over_button_pressed"]

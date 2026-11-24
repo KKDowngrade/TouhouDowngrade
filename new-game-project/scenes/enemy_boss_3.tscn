@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://rp31nxsiqu0h"]
+
+[ext_resource type="Script" uid="uid://drkirc14g788q" path="res://scripts/enemy_boss_3.gd" id="1_t7g1s"]
+[ext_resource type="Script" uid="uid://4we8vic82cr2" path="res://scripts/entity_component.gd" id="2_6itlx"]
+[ext_resource type="PackedScene" uid="uid://k5dpaj8h7bpt" path="res://scenes/mini.tscn" id="2_xkyui"]
+[ext_resource type="PackedScene" uid="uid://h1xvd6easkrt" path="res://scenes/enemy_bullet.tscn" id="3_g2wg8"]
+[ext_resource type="Texture2D" uid="uid://cr1mf4pl7p8i7" path="res://assets/Boss3.png" id="3_xkyui"]
+
+[sub_resource type="Curve2D" id="Curve2D_g2wg8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -2, 0, 0, 0, 0, -190, 12, 0, 0, 0, 0, -5, 79, 0, 0, 0, 0, 187, -2, 0, 0, 0, 0, -2, -1)
+}
+point_count = 5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_arqo0"]
+radius = 28.0
+height = 128.0
+
+[node name="EnemyBoss3" type="Node2D" unique_id=1305658322 node_paths=PackedStringArray("entity", "path_follow") groups=["enemy"]]
+script = ExtResource("1_t7g1s")
+entity = NodePath("Path2D/PathFollow2D/Area2D/Entity")
+bullet_scene = ExtResource("2_xkyui")
+path_follow = NodePath("Path2D/PathFollow2D")
+bullet_scene2 = ExtResource("3_g2wg8")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=393100594]
+curve = SubResource("Curve2D_g2wg8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1403386976]
+position = Vector2(-1, -2)
+rotation = 3.0676537
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D" unique_id=42050314]
+rotation = 3.2114058
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D" unique_id=878023630]
+shape = SubResource("CapsuleShape2D_arqo0")
+
+[node name="Entity" type="Node" parent="Path2D/PathFollow2D/Area2D" unique_id=363037932 groups=["enemy"]]
+script = ExtResource("2_6itlx")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D" unique_id=62771374]
+texture = ExtResource("3_xkyui")

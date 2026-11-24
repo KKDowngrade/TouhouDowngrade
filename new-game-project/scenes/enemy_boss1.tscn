@@ -72,7 +72,7 @@ _data = {
 &"new_animation": SubResource("Animation_c4w8v")
 }
 
-[node name="Enemy" type="Node2D" unique_id=1699949836 node_paths=PackedStringArray("entity", "path_follow")]
+[node name="Enemy" type="Node2D" unique_id=1699949836 node_paths=PackedStringArray("entity", "path_follow") groups=["enemy"]]
 script = ExtResource("1_annth")
 entity = NodePath("Path2D/PathFollow2D/EnemyArea/Entity")
 path_follow = NodePath("Path2D/PathFollow2D")

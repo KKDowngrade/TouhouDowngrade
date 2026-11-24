@@ -7,7 +7,7 @@
 radius = 6.0
 height = 20.0
 
-[node name="EnemyShot" type="Area2D" unique_id=1523538867]
+[node name="EnemyShot" type="Area2D" unique_id=1523538867 groups=["enemy"]]
 collision_layer = 32
 collision_mask = 66
 script = ExtResource("1_itq2j")

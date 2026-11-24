@@ -9,7 +9,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rxva8"]
 radius = 14.035668
 
-[node name="enemy_ball" type="Area2D" unique_id=507061330]
+[node name="enemy_ball" type="Area2D" unique_id=507061330 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 66
 script = ExtResource("1_c6lfg")
@@ -45,7 +45,7 @@ position = Vector2(0, 14)
 [node name="Marker2D8" type="Marker2D" parent="." unique_id=687091788]
 position = Vector2(14, 0)
 
-[node name="Entity" type="Node" parent="." unique_id=1934546973 node_paths=PackedStringArray("entity_owner")]
+[node name="Entity" type="Node" parent="." unique_id=1934546973 node_paths=PackedStringArray("entity_owner") groups=["enemy"]]
 script = ExtResource("3_5aiud")
 entity_owner = NodePath("..")
 health = 10
